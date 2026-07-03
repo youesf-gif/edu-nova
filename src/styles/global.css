@@ -1,0 +1,487 @@
+/* ==========================================================================
+   CSS VARIABLES & GLOBAL SETTINGS
+   ========================================================================== */
+:root {
+  /* Layout */
+  --navbar-height: 64px;
+
+  /* Color Palette */
+  --primary: #091426;
+  --secondary: #006a61;
+  --background: #f8f9ff;
+  --white: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eff4ff;
+  --surface-container: #e5eeff;
+  --primary-container: #1e293b;
+
+  /* Text and Borders */
+  --on-surface-variant: #45474c;
+  --primary-fixed-dim: #bcc7de;
+  --secondary-fixed: #89f5e7;
+  --outline-variant: #c5c6cd;
+  --border-on-primary-container-20: rgba(216, 227, 251, 0.2);
+}
+
+/* Base resets & styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--on-surface-variant);
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+.min-h-screen {
+  min-height: 100vh !important;
+}
+
+.min-h-100 {
+  min-height: 100% !important;
+}
+
+/* Max Container Spacing */
+.container-max {
+  max-width: 1320px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-max {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+}
+
+/* Material Symbols display correction */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Global button scale animation feedback */
+button {
+  transition: transform 0.1s ease-in-out, background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+}
+
+.scale-95 {
+  transform: scale(0.95) !important;
+}
+
+/* ==========================================================================
+   TAILWIND VISUAL STYLE REPLICATIONS
+   ========================================================================== */
+/* Typography Font Sizes & Weights */
+.font-headline-xl,
+.text-headline-xl {
+  font-size: 48px !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.02em !important;
+  font-weight: 700 !important;
+}
+
+.font-headline-lg,
+.text-headline-lg {
+  font-size: 32px !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 600 !important;
+}
+
+.font-headline-md,
+.text-headline-md {
+  font-size: 24px !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+}
+
+.font-body-lg,
+.text-body-lg {
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+.font-body-md,
+.text-body-md {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  font-weight: 400 !important;
+}
+
+.font-label-md,
+.text-label-md {
+  font-size: 14px !important;
+  line-height: 1 !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 500 !important;
+}
+
+.text-label-sm {
+  font-size: 12px !important;
+  line-height: 1 !important;
+  font-weight: 600 !important;
+}
+
+.font-bold {
+  font-weight: 700 !important;
+}
+
+.font-black {
+  font-weight: 900 !important;
+}
+
+/* Color Rules */
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-secondary {
+  color: var(--secondary) !important;
+}
+
+.text-on-primary {
+  color: var(--white) !important;
+}
+
+.text-on-surface {
+  color: #0b1c30 !important;
+}
+
+.text-on-surface-variant {
+  color: var(--on-surface-variant) !important;
+}
+
+.text-primary-fixed-dim {
+  color: var(--primary-fixed-dim) !important;
+}
+
+.text-secondary-fixed {
+  color: var(--secondary-fixed) !important;
+}
+
+.text-on-primary-container {
+  color: var(--on-primary-container) !important;
+}
+
+.text-outline {
+  color: #75777d !important;
+}
+
+.hover-text-secondary-fixed:hover {
+  color: var(--secondary-fixed) !important;
+}
+
+.hover-text-secondary:hover {
+  color: var(--secondary) !important;
+}
+
+.bg-surface {
+  background-color: var(--background) !important;
+}
+
+.bg-secondary {
+  background-color: var(--secondary) !important;
+}
+
+.bg-primary-container {
+  background-color: var(--primary-container) !important;
+}
+
+.bg-white {
+  background-color: var(--white) !important;
+}
+
+.bg-primary-40 {
+  background-color: rgba(9, 20, 38, 0.4) !important;
+}
+
+.bg-secondary-20 {
+  background-color: rgba(0, 106, 97, 0.2) !important;
+}
+
+.bg-secondary-10 {
+  background-color: rgba(0, 106, 97, 0.1) !important;
+}
+
+.bg-primary-20 {
+  background-color: rgba(9, 20, 38, 0.2) !important;
+}
+
+.bg-surface-container-low {
+  background-color: var(--surface-container-low) !important;
+}
+
+.hover-bg-surface-container-low:hover {
+  background-color: var(--surface-container-low) !important;
+}
+
+.hover-bg-on-secondary-container:hover {
+  background-color: #006f66 !important;
+}
+
+/* Spacings & Paddings */
+.px-gutter {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+.py-stack-lg {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+.p-gutter {
+  padding: 1.5rem !important;
+}
+
+.px-12 {
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+@media (min-width: 992px) {
+  .px-lg-24 {
+    padding-left: 6rem !important;
+    padding-right: 6rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .p-md-12 {
+    padding: 3rem !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .p-lg-24 {
+    padding: 6rem !important;
+  }
+}
+
+.pt-8 {
+  padding-top: 2rem !important;
+}
+
+.p-4 {
+  padding: 1rem !important;
+}
+
+.py-4 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.py-3 {
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+}
+
+.pl-10 {
+  padding-left: 2.5rem !important;
+}
+
+.pr-4 {
+  padding-right: 1rem !important;
+}
+
+.gap-8 {
+  gap: 2rem !important;
+}
+
+.gap-6 {
+  gap: 1.5rem !important;
+}
+
+.gap-4 {
+  gap: 1rem !important;
+}
+
+.gap-3 {
+  gap: 0.75rem !important;
+}
+
+.gap-2 {
+  gap: 0.5rem !important;
+}
+
+.gap-x-8 {
+  column-gap: 2rem !important;
+}
+
+.gap-y-4 {
+  row-gap: 1rem !important;
+}
+
+/* Space-y rules for margin stacks */
+.space-y-6> :not([hidden])~ :not([hidden]) {
+  margin-top: 1.5rem !important;
+}
+
+.space-y-8> :not([hidden])~ :not([hidden]) {
+  margin-top: 2rem !important;
+}
+
+.space-y-2> :not([hidden])~ :not([hidden]) {
+  margin-top: 0.5rem !important;
+}
+
+/* Stacking & Layout Extras */
+.h-16 {
+  height: 4rem !important;
+}
+
+.w-12 {
+  width: 3rem !important;
+}
+
+.h-12 {
+  height: 3rem !important;
+}
+
+.w-96 {
+  width: 24rem !important;
+}
+
+.h-96 {
+  height: 24rem !important;
+}
+
+.max-w-container-max {
+  max-width: 1320px !important;
+}
+
+.max-w-md {
+  max-width: 28rem !important;
+}
+
+.left-3 {
+  left: 0.75rem !important;
+}
+
+.top-1\/2 {
+  top: 50% !important;
+}
+
+.-translate-y-1\/2 {
+  transform: translateY(-50%) !important;
+}
+
+.text-20,
+.text-\[20px\] {
+  font-size: 20px !important;
+}
+
+.bottom-n24,
+.-bottom-24 {
+  bottom: -6rem !important;
+}
+
+.left-n24,
+.-left-24 {
+  left: -6rem !important;
+}
+
+.top-n24,
+.-top-24 {
+  top: -6rem !important;
+}
+
+.right-n24,
+.-right-24 {
+  right: -6rem !important;
+}
+
+/* Borders & Rads */
+.border-outline-variant {
+  border-color: var(--outline-variant) !important;
+}
+
+.border-b {
+  border-bottom: 1px solid var(--outline-variant) !important;
+}
+
+.border-t {
+  border-top: 1px solid var(--outline-variant) !important;
+}
+
+.border-outline-20 {
+  border: 1px solid rgba(117, 119, 125, 0.2) !important;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem !important;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem !important;
+}
+
+.rounded-full {
+  border-radius: 9999px !important;
+}
+
+/* Backdrop Filters & Blur */
+.backdrop-blur-md {
+  backdrop-filter: blur(12px) !important;
+}
+
+.blur-120 {
+  filter: blur(120px) !important;
+}
+
+/* Forms, Transitions, Transforms */
+.placeholder-outline-50::placeholder,
+.placeholder\:text-outline\/50::placeholder {
+  color: rgba(117, 119, 125, 0.5) !important;
+}
+
+.transition-all {
+  transition: all 0.2s ease-in-out !important;
+}
+
+.transition-colors {
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s !important;
+}
+
+.active-scale-98:active,
+.active\:scale-\[0\.98\]:active {
+  transform: scale(0.98) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.active-opacity-80:active,
+.active\:opacity-80:active {
+  opacity: 0.8 !important;
+}
+
+.hover\:underline:hover {
+  text-decoration: underline !important;
+}
+
+/* Accessibility Focus States & Transition Smoothness */
+.btn:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 106, 97, 0.25) !important;
+}
+
+input[type="checkbox"]:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 106, 97, 0.25) !important;
+}
+
+a {
+  transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out !important;
+}

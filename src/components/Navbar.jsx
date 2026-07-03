@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import "../styles/navbar.css";
 
 function Navbar({ minimal = false }) {
   const [isOpen, setIsOpen] = useState(false);

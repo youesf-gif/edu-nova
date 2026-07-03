@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/footer.css";
 
 function Footer() {
   const [isSendPressed, setIsSendPressed] = useState(false);

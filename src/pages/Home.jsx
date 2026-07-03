@@ -6,6 +6,7 @@ import PopularCourses from "../components/PopularCourses";
 import Testimonials from "../components/Testimonials";
 import FAQ from "../components/FAQ";
 import Footer from "../components/Footer";
+import "../styles/home.css";
 
 function Home() {
   return (

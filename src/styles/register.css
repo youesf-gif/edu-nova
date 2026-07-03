@@ -1,0 +1,59 @@
+/* ==========================================================================
+   REGISTRATION PAGE LAYOUT & RESPONSIVE STYLES
+   ========================================================================== */
+.register-main-container {
+  margin-top: var(--navbar-height) !important;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+@media (min-width: 768px) {
+  .register-main-container {
+    height: calc(100vh - var(--navbar-height)) !important;
+    min-height: auto !important;
+    overflow: hidden;
+    margin-top: var(--navbar-height) !important;
+  }
+
+  .register-left-panel {
+    width: 50% !important;
+    height: 100% !important;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
+  @media (min-width: 992px) {
+    .register-left-panel {
+      padding-left: 4.5rem !important;
+      padding-right: 4.5rem !important;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .register-left-panel {
+      padding-left: 6rem !important;
+      padding-right: 6rem !important;
+    }
+  }
+
+  .register-right-panel {
+    width: 50% !important;
+    height: 100% !important;
+    overflow: auto;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  @media (min-width: 992px) {
+    .register-right-panel {
+      padding-left: 3.5rem !important;
+      padding-right: 3.5rem !important;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .register-right-panel {
+      padding-left: 5rem !important;
+      padding-right: 5rem !important;
+    }
+  }
+}

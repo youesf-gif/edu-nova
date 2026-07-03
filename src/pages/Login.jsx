@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import AuthVisualPanel from "../components/AuthVisualPanel";
+import "../styles/login.css";
 
 function Login() {
   const emailInputRef = useRef(null);
