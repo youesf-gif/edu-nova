@@ -6,13 +6,13 @@ import "../styles/login.css";
 
 function Login() {
   const emailInputRef = useRef(null);
-  const passwordInputRef = useRef(null); // Ref to focus password field on error
+  const passwordInputRef = useRef(null);
 
-  // Focus states
+  // States to track input focus (used for green icons)
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
 
-  // Field values (beginner-friendly unified state object)
+  // Form inputs state
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -20,18 +20,18 @@ function Login() {
   const [remember, setRemember] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  // Validation error states
+  // Form error messages state
   const [errors, setErrors] = useState({
     email: "",
     password: ""
   });
 
-  // Button pressed states
+  // States to add active/click button animations
   const [isSubmitPressed, setIsSubmitPressed] = useState(false);
   const [isGooglePressed, setIsGooglePressed] = useState(false);
   const [isGithubPressed, setIsGithubPressed] = useState(false);
 
-  // Auto-focus the first input on load
+  // Focus the email field when the page loads
   useEffect(() => {
     if (emailInputRef.current) {
       emailInputRef.current.focus();
@@ -39,7 +39,7 @@ function Login() {
     }
   }, []);
 
-  // Handle all text input changes and clear field validation errors
+  // Update input state and clear error messages when user starts typing
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({
@@ -47,7 +47,6 @@ function Login() {
       [id]: value
     }));
 
-    // Clear validation error message when user starts correcting the field
     if (errors[id]) {
       setErrors((prev) => ({
         ...prev,
@@ -56,11 +55,11 @@ function Login() {
     }
   };
 
-  // Perform form validation rules checks
+  // Validate the form inputs
   const validateForm = () => {
     const newErrors = {};
 
-    // Email validation
+    // Check email
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else {
@@ -70,7 +69,7 @@ function Login() {
       }
     }
 
-    // Password validation
+    // Check password
     if (!formData.password) {
       newErrors.password = "Password is required.";
     } else if (formData.password.length < 8) {
@@ -78,19 +77,18 @@ function Login() {
     }
 
     setErrors(newErrors);
-    // Return true if no errors are present
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle submit validation and focusing
+  // Handle form submission
   const handleFormSubmit = (e) => {
     e.preventDefault();
     
     const isValid = validateForm();
     if (isValid) {
-      console.log("Login successful", formData);
+      // Form is valid. Submit login data here
     } else {
-      // Focus first invalid input field
+      // Focus the first invalid field
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!formData.email.trim() || !emailRegex.test(formData.email)) {
         if (emailInputRef.current) {

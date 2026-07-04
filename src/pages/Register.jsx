@@ -11,13 +11,13 @@ function Register() {
   const confirmPasswordInputRef = useRef(null);
   const termsInputRef = useRef(null);
 
-  // Focus states
+  // States to track input focus (used for green icons)
   const [nameFocused, setNameFocused] = useState(false);
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
-  // Form values (beginner-friendly unified state object)
+  // Form inputs state
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -28,7 +28,7 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Validation error states
+  // Form error messages state
   const [errors, setErrors] = useState({
     fullName: "",
     email: "",
@@ -37,12 +37,12 @@ function Register() {
     termsAccepted: ""
   });
 
-  // Button pressed states
+  // States to add active/click button animations
   const [isSubmitPressed, setIsSubmitPressed] = useState(false);
   const [isGooglePressed, setIsGooglePressed] = useState(false);
   const [isGithubPressed, setIsGithubPressed] = useState(false);
 
-  // Auto-focus the first input on load
+  // Focus the name field when the page loads
   useEffect(() => {
     if (nameInputRef.current) {
       nameInputRef.current.focus();
@@ -50,11 +50,10 @@ function Register() {
     }
   }, []);
 
-  // Handle all input changes (text inputs and checkboxes) and clear active field validation errors
+  // Update input state and clear error messages when user starts typing or checking box
   const handleChange = (e) => {
     const { id, type, value, checked } = e.target;
     
-    // Map element ids to matching keys in state
     let key = id;
     if (id === "full_name") key = "fullName";
     if (id === "confirm_password") key = "confirmPassword";
@@ -65,7 +64,6 @@ function Register() {
       [key]: type === "checkbox" ? checked : value
     }));
 
-    // Clear validation error when user begins typing or interacting
     if (errors[key]) {
       setErrors((prev) => ({
         ...prev,
@@ -74,11 +72,11 @@ function Register() {
     }
   };
 
-  // Perform form validation rules checks
+  // Validate the form inputs
   const validateForm = () => {
     const newErrors = {};
 
-    // Validate Full Name (require both First Name and Last Name)
+    // Check name
     const nameTrimmed = formData.fullName.trim();
     if (!nameTrimmed) {
       newErrors.fullName = "First Name is required.";
@@ -89,7 +87,7 @@ function Register() {
       }
     }
 
-    // Email validation
+    // Check email
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else {
@@ -99,39 +97,38 @@ function Register() {
       }
     }
 
-    // Password validation
+    // Check password
     if (!formData.password) {
       newErrors.password = "Password is required.";
     } else if (formData.password.length < 8) {
       newErrors.password = "Password must contain at least 8 characters.";
     }
 
-    // Confirm password validation
+    // Check confirm password
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = "Confirm Password is required.";
     } else if (formData.confirmPassword !== formData.password) {
       newErrors.confirmPassword = "Confirm Password must match Password.";
     }
 
-    // Terms validation
+    // Check checkbox
     if (!formData.termsAccepted) {
       newErrors.termsAccepted = "You must accept the Terms & Conditions.";
     }
 
     setErrors(newErrors);
-    // Return true if no errors are present
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle submit validation and focusing
+  // Handle form submission
   const handleFormSubmit = (e) => {
     e.preventDefault();
     
     const isValid = validateForm();
     if (isValid) {
-      console.log("Registration successful", formData);
+      // Form is valid. Submit registration data here
     } else {
-      // Focus first invalid input field in layout order
+      // Focus the first invalid field
       const nameTrimmed = formData.fullName.trim();
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

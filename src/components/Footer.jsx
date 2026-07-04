@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/footer.css";
 
 function Footer() {
@@ -9,7 +10,7 @@ function Footer() {
       <div className="container-max">
         <div className="row g-4">
           <div className="col-12 col-md-3">
-            <a className="footer-logo" href="#">EduNova</a>
+            <Link className="footer-logo" to="/">EduNova</Link>
             <p className="footer-desc">
               Empowering learners worldwide through innovative educational technology and
               expert-led curriculum.
