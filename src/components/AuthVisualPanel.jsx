@@ -1,13 +1,13 @@
 function AuthVisualPanel() {
   return (
-    <div className="d-none d-md-flex w-md-50 bg-primary-container position-relative overflow-hidden px-12 px-lg-24 register-left-panel">
+    <div className="d-none d-md-flex w-md-45 bg-primary-container position-relative overflow-hidden px-12 px-lg-24 register-left-panel">
       <div className="w-100 min-h-100 d-flex flex-column">
         <div className="position-relative z-10 space-y-6 my-auto">
-          <h1 className="font-headline-xl text-headline-xl text-on-primary leading-tight">
+          <h1 className="hero-title text-on-primary leading-tight">
             Master New Skills<br />
             <span className="text-secondary-fixed">At Your Own Pace.</span>
           </h1>
-          <p className="font-body-lg text-body-lg text-primary-fixed-dim max-w-md mb-0">
+          <p className="hero-desc text-primary-fixed-dim max-w-md mb-0">
             Join thousands of students and professionals in the world's most innovative educational ecosystem. Start your journey today.
           </p>
           <div className="d-flex flex-wrap gap-4 pt-8">

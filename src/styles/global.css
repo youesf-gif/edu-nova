@@ -485,3 +485,32 @@ input[type="checkbox"]:focus {
 a {
   transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out !important;
 }
+
+/* ==========================================================================
+   SHARED HERO STYLES
+   ========================================================================== */
+.hero-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--primary);
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 48px;
+    letter-spacing: -0.02em;
+  }
+}
+
+.hero-title .highlight {
+  color: var(--secondary);
+}
+
+.hero-desc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+  max-width: 32rem;
+}
+
