@@ -289,6 +289,10 @@ button {
   padding-left: 2.5rem !important;
 }
 
+.pr-10 {
+  padding-right: 2.5rem !important;
+}
+
 .pr-4 {
   padding-right: 1rem !important;
 }

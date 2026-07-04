@@ -6,6 +6,10 @@ import "../styles/register.css";
 
 function Register() {
   const nameInputRef = useRef(null);
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null);
+  const confirmPasswordInputRef = useRef(null);
+  const termsInputRef = useRef(null);
 
   // Focus states
   const [nameFocused, setNameFocused] = useState(false);
@@ -13,12 +17,25 @@ function Register() {
   const [passwordFocused, setPasswordFocused] = useState(false);
   const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
-  // Form values
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [termsAccepted, setTermsAccepted] = useState(false);
+  // Form values (beginner-friendly unified state object)
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    termsAccepted: false
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // Validation error states
+  const [errors, setErrors] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    termsAccepted: ""
+  });
 
   // Button pressed states
   const [isSubmitPressed, setIsSubmitPressed] = useState(false);
@@ -33,9 +50,113 @@ function Register() {
     }
   }, []);
 
+  // Handle all input changes (text inputs and checkboxes) and clear active field validation errors
+  const handleChange = (e) => {
+    const { id, type, value, checked } = e.target;
+    
+    // Map element ids to matching keys in state
+    let key = id;
+    if (id === "full_name") key = "fullName";
+    if (id === "confirm_password") key = "confirmPassword";
+    if (id === "terms") key = "termsAccepted";
+
+    setFormData((prev) => ({
+      ...prev,
+      [key]: type === "checkbox" ? checked : value
+    }));
+
+    // Clear validation error when user begins typing or interacting
+    if (errors[key]) {
+      setErrors((prev) => ({
+        ...prev,
+        [key]: ""
+      }));
+    }
+  };
+
+  // Perform form validation rules checks
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Validate Full Name (require both First Name and Last Name)
+    const nameTrimmed = formData.fullName.trim();
+    if (!nameTrimmed) {
+      newErrors.fullName = "First Name is required.";
+    } else {
+      const nameParts = nameTrimmed.split(/\s+/);
+      if (nameParts.length < 2) {
+        newErrors.fullName = "Last Name is required.";
+      }
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = "Email must be valid.";
+      }
+    }
+
+    // Password validation
+    if (!formData.password) {
+      newErrors.password = "Password is required.";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must contain at least 8 characters.";
+    }
+
+    // Confirm password validation
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = "Confirm Password is required.";
+    } else if (formData.confirmPassword !== formData.password) {
+      newErrors.confirmPassword = "Confirm Password must match Password.";
+    }
+
+    // Terms validation
+    if (!formData.termsAccepted) {
+      newErrors.termsAccepted = "You must accept the Terms & Conditions.";
+    }
+
+    setErrors(newErrors);
+    // Return true if no errors are present
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle submit validation and focusing
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // No submission endpoint yet, matching original behavior
+    
+    const isValid = validateForm();
+    if (isValid) {
+      console.log("Registration successful", formData);
+    } else {
+      // Focus first invalid input field in layout order
+      const nameTrimmed = formData.fullName.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!nameTrimmed || nameTrimmed.split(/\s+/).length < 2) {
+        if (nameInputRef.current) {
+          nameInputRef.current.focus();
+        }
+      } else if (!formData.email.trim() || !emailRegex.test(formData.email)) {
+        if (emailInputRef.current) {
+          emailInputRef.current.focus();
+        }
+      } else if (!formData.password || formData.password.length < 8) {
+        if (passwordInputRef.current) {
+          passwordInputRef.current.focus();
+        }
+      } else if (!formData.confirmPassword || formData.confirmPassword !== formData.password) {
+        if (confirmPasswordInputRef.current) {
+          confirmPasswordInputRef.current.focus();
+        }
+      } else if (!formData.termsAccepted) {
+        if (termsInputRef.current) {
+          termsInputRef.current.focus();
+        }
+      }
+    }
   };
 
   return (
@@ -78,17 +199,20 @@ function Register() {
                     </span>
                     <input 
                       ref={nameInputRef}
-                      className="w-100 pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus" 
+                      className={`w-100 pl-10 pr-4 py-3 bg-white border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus ${errors.fullName ? "is-invalid border-danger" : "border-outline-variant"}`} 
                       id="full_name" 
                       placeholder="John Doe" 
                       type="text" 
                       autoComplete="name"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
+                      value={formData.fullName}
+                      onChange={handleChange}
                       onFocus={() => setNameFocused(true)}
                       onBlur={() => setNameFocused(false)}
                     />
                   </div>
+                  {errors.fullName && (
+                    <div className="invalid-feedback d-block mt-1">{errors.fullName}</div>
+                  )}
                 </div>
 
                 {/* Email Address */}
@@ -104,17 +228,21 @@ function Register() {
                       mail
                     </span>
                     <input 
-                      className="w-100 pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus" 
+                      ref={emailInputRef}
+                      className={`w-100 pl-10 pr-4 py-3 bg-white border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus ${errors.email ? "is-invalid border-danger" : "border-outline-variant"}`} 
                       id="email" 
                       placeholder="name@company.com" 
                       type="email" 
                       autoComplete="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={formData.email}
+                      onChange={handleChange}
                       onFocus={() => setEmailFocused(true)}
                       onBlur={() => setEmailFocused(false)}
                     />
                   </div>
+                  {errors.email && (
+                    <div className="invalid-feedback d-block mt-1">{errors.email}</div>
+                  )}
                 </div>
 
                 {/* Password Grid */}
@@ -131,17 +259,31 @@ function Register() {
                         lock
                       </span>
                       <input 
-                        className="w-100 pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus" 
+                        ref={passwordInputRef}
+                        className={`w-100 pl-10 pr-10 py-3 bg-white border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus ${errors.password ? "is-invalid border-danger" : "border-outline-variant"}`} 
                         id="password" 
                         placeholder="••••••••" 
-                        type="password" 
+                        type={showPassword ? "text" : "password"} 
                         autoComplete="new-password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={formData.password}
+                        onChange={handleChange}
                         onFocus={() => setPasswordFocused(true)}
                         onBlur={() => setPasswordFocused(false)}
                       />
+                      <button
+                        type="button"
+                        className="password-toggle-btn"
+                        onClick={() => setShowPassword(prev => !prev)}
+                        aria-label={showPassword ? "Hide password" : "Show password"}
+                      >
+                        <span className="material-symbols-outlined password-toggle-icon text-[20px]">
+                          {showPassword ? "visibility_off" : "visibility"}
+                        </span>
+                      </button>
                     </div>
+                    {errors.password && (
+                      <div className="invalid-feedback d-block mt-1">{errors.password}</div>
+                    )}
                   </div>
                   <div className="col-12 col-sm-6 d-flex flex-column gap-2">
                     <label className="font-label-md text-label-md text-on-surface" htmlFor="confirm_password">
@@ -155,32 +297,52 @@ function Register() {
                         verified_user
                       </span>
                       <input 
-                        className="w-100 pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus" 
+                        ref={confirmPasswordInputRef}
+                        className={`w-100 pl-10 pr-10 py-3 bg-white border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus ${errors.confirmPassword ? "is-invalid border-danger" : "border-outline-variant"}`} 
                         id="confirm_password" 
                         placeholder="••••••••" 
-                        type="password" 
+                        type={showConfirmPassword ? "text" : "password"} 
                         autoComplete="new-password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
                         onFocus={() => setConfirmPasswordFocused(true)}
                         onBlur={() => setConfirmPasswordFocused(false)}
                       />
+                      <button
+                        type="button"
+                        className="password-toggle-btn"
+                        onClick={() => setShowConfirmPassword(prev => !prev)}
+                        aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                      >
+                        <span className="material-symbols-outlined password-toggle-icon text-[20px]">
+                          {showConfirmPassword ? "visibility_off" : "visibility"}
+                        </span>
+                      </button>
                     </div>
+                    {errors.confirmPassword && (
+                      <div className="invalid-feedback d-block mt-1">{errors.confirmPassword}</div>
+                    )}
                   </div>
                 </div>
 
                 {/* Terms of Service */}
-                <div className="d-flex align-items-start gap-3">
-                  <input 
-                    className="mt-1 w-5 h-5 rounded border-outline-variant cursor-pointer accent-secondary" 
-                    id="terms" 
-                    type="checkbox"
-                    checked={termsAccepted}
-                    onChange={(e) => setTermsAccepted(e.target.checked)}
-                  />
-                  <label className="font-label-md text-label-md text-on-surface-variant leading-relaxed" htmlFor="terms">
-                    I agree to the <a className="text-secondary hover:underline text-decoration-none" href="#">Terms of Service</a> and <a className="text-secondary hover:underline text-decoration-none" href="#">Privacy Policy</a>.
-                  </label>
+                <div className="space-y-2">
+                  <div className="d-flex align-items-start gap-3">
+                    <input 
+                      ref={termsInputRef}
+                      className={`mt-1 w-5 h-5 rounded cursor-pointer accent-secondary ${errors.termsAccepted ? "is-invalid" : "border-outline-variant"}`} 
+                      id="terms" 
+                      type="checkbox"
+                      checked={formData.termsAccepted}
+                      onChange={handleChange}
+                    />
+                    <label className="font-label-md text-label-md text-on-surface-variant leading-relaxed" htmlFor="terms">
+                      I agree to the <a className="text-secondary hover:underline text-decoration-none" href="#">Terms of Service</a> and <a className="text-secondary hover:underline text-decoration-none" href="#">Privacy Policy</a>.
+                    </label>
+                  </div>
+                  {errors.termsAccepted && (
+                    <div className="invalid-feedback d-block mt-1">{errors.termsAccepted}</div>
+                  )}
                 </div>
 
                 {/* Submit Button */}

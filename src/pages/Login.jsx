@@ -6,15 +6,25 @@ import "../styles/login.css";
 
 function Login() {
   const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null); // Ref to focus password field on error
 
   // Focus states
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
 
-  // Field values
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // Field values (beginner-friendly unified state object)
+  const [formData, setFormData] = useState({
+    email: "",
+    password: ""
+  });
   const [remember, setRemember] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Validation error states
+  const [errors, setErrors] = useState({
+    email: "",
+    password: ""
+  });
 
   // Button pressed states
   const [isSubmitPressed, setIsSubmitPressed] = useState(false);
@@ -29,9 +39,69 @@ function Login() {
     }
   }, []);
 
+  // Handle all text input changes and clear field validation errors
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value
+    }));
+
+    // Clear validation error message when user starts correcting the field
+    if (errors[id]) {
+      setErrors((prev) => ({
+        ...prev,
+        [id]: ""
+      }));
+    }
+  };
+
+  // Perform form validation rules checks
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        newErrors.email = "Email must be valid.";
+      }
+    }
+
+    // Password validation
+    if (!formData.password) {
+      newErrors.password = "Password is required.";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must contain at least 8 characters.";
+    }
+
+    setErrors(newErrors);
+    // Return true if no errors are present
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handle submit validation and focusing
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    // No submission endpoint yet, matching original behavior
+    
+    const isValid = validateForm();
+    if (isValid) {
+      console.log("Login successful", formData);
+    } else {
+      // Focus first invalid input field
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!formData.email.trim() || !emailRegex.test(formData.email)) {
+        if (emailInputRef.current) {
+          emailInputRef.current.focus();
+        }
+      } else if (!formData.password || formData.password.length < 8) {
+        if (passwordInputRef.current) {
+          passwordInputRef.current.focus();
+        }
+      }
+    }
   };
 
   return (
@@ -73,17 +143,20 @@ function Login() {
                     </span>
                     <input 
                       ref={emailInputRef}
-                      className="w-100 pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus" 
+                      className={`w-100 pl-10 pr-4 py-3 bg-white border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus ${errors.email ? "is-invalid border-danger" : "border-outline-variant"}`} 
                       id="email" 
                       placeholder="name@company.com" 
                       type="email" 
                       autoComplete="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      value={formData.email}
+                      onChange={handleChange}
                       onFocus={() => setEmailFocused(true)}
                       onBlur={() => setEmailFocused(false)}
                     />
                   </div>
+                  {errors.email && (
+                    <div className="invalid-feedback d-block mt-1">{errors.email}</div>
+                  )}
                 </div>
                 {/* Password */}
                 <div className="space-y-2">
@@ -98,17 +171,31 @@ function Login() {
                       lock
                     </span>
                     <input 
-                      className="w-100 pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus" 
+                      ref={passwordInputRef}
+                      className={`w-100 pl-10 pr-10 py-3 bg-white border rounded-lg font-body-md text-body-md text-on-surface placeholder:text-outline/50 transition-all form-input-focus ${errors.password ? "is-invalid border-danger" : "border-outline-variant"}`} 
                       id="password" 
                       placeholder="••••••••" 
-                      type="password" 
+                      type={showPassword ? "text" : "password"} 
                       autoComplete="current-password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      value={formData.password}
+                      onChange={handleChange}
                       onFocus={() => setPasswordFocused(true)}
                       onBlur={() => setPasswordFocused(false)}
                     />
+                    <button
+                      type="button"
+                      className="password-toggle-btn"
+                      onClick={() => setShowPassword(prev => !prev)}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                      <span className="material-symbols-outlined password-toggle-icon text-[20px]">
+                        {showPassword ? "visibility_off" : "visibility"}
+                      </span>
+                    </button>
                   </div>
+                  {errors.password && (
+                    <div className="invalid-feedback d-block mt-1">{errors.password}</div>
+                  )}
                 </div>
                 {/* Options: Remember Me & Forgot Password */}
                 <div className="d-flex align-items-center justify-content-between">

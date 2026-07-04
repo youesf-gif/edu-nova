@@ -2,19 +2,19 @@
    SHARED AUTHENTICATION PAGES LAYOUT
    ========================================================================== */
 .register-main-container {
-    margin-top: var(--navbar-height) !important;
-    min-height: calc(100vh - var(--navbar-height));
+  margin-top: var(--navbar-height) !important;
+  min-height: calc(100vh - var(--navbar-height));
 }
 
 @media (min-width: 768px) {
-    .register-main-container {
-        height: calc(100vh - var(--navbar-height)) !important;
-        min-height: auto !important;
-        overflow: hidden;
-        margin-top: var(--navbar-height) !important;
-    }
+  .register-main-container {
+    height: calc(100vh - var(--navbar-height)) !important;
+    min-height: auto !important;
+    overflow: hidden;
+    margin-top: var(--navbar-height) !important;
+  }
 
-    .register-left-panel {
+  .register-left-panel {
     flex-basis: 48% !important;
     max-width: 48% !important;
     width: 48% !important;
@@ -23,21 +23,21 @@
     padding-right: 3rem !important;
   }
 
-    @media (min-width: 992px) {
-        .register-left-panel {
-            padding-left: 4.5rem !important;
-            padding-right: 4.5rem !important;
-        }
+  @media (min-width: 992px) {
+    .register-left-panel {
+      padding-left: 4.5rem !important;
+      padding-right: 4.5rem !important;
     }
+  }
 
-    @media (min-width: 1200px) {
-        .register-left-panel {
-            padding-left: 6rem !important;
-            padding-right: 6rem !important;
-        }
+  @media (min-width: 1200px) {
+    .register-left-panel {
+      padding-left: 6rem !important;
+      padding-right: 6rem !important;
     }
+  }
 
-    .register-right-panel {
+  .register-right-panel {
     flex-basis: 52% !important;
     max-width: 52% !important;
     width: 52% !important;
@@ -47,17 +47,55 @@
     padding-right: 2rem !important;
   }
 
-    @media (min-width: 992px) {
-        .register-right-panel {
-            padding-left: 3.5rem !important;
-            padding-right: 3.5rem !important;
-        }
+  @media (min-width: 992px) {
+    .register-right-panel {
+      padding-left: 3.5rem !important;
+      padding-right: 3.5rem !important;
     }
+  }
 
-    @media (min-width: 1200px) {
-        .register-right-panel {
-            padding-left: 5rem !important;
-            padding-right: 5rem !important;
-        }
+  @media (min-width: 1200px) {
+    .register-right-panel {
+      padding-left: 5rem !important;
+      padding-right: 5rem !important;
     }
+  }
+}
+
+/* Password Toggle Button */
+.password-toggle-btn {
+  position: absolute;
+  right: 1rem !important;
+  /* ~16px spacing from the right */
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.password-toggle-icon {
+  color: #75777d;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover .password-toggle-icon {
+  color: #1a1c1e;
+}
+
+.password-toggle-btn:active .password-toggle-icon {
+  color: #006a61;
+}
+
+/* Accessibility Focus Rules for Password Toggle */
+.password-toggle-btn:focus,
+.password-toggle-btn:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
 }
