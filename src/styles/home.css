@@ -1,0 +1,490 @@
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero-section {
+    margin-top: var(--navbar-height);
+    min-height: calc(100vh - var(--navbar-height));
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: var(--surface-container-low);
+    display: flex;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .hero-section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-explore {
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    background-color: var(--secondary);
+    border: none;
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-explore:hover {
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.btn-start {
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary);
+    background: transparent;
+    border: 2px solid var(--primary);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-start:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.hero-image-wrapper {
+    position: relative;
+}
+
+.hero-image-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary);
+    border-radius: 1rem;
+    transform: rotate(3deg);
+    opacity: 0.1;
+    transition: transform 0.2s ease-in-out;
+}
+
+.hero-image-wrapper:hover .hero-image-backdrop {
+    transform: rotate(1deg);
+}
+
+.hero-image-frame {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   STATS SECTION
+   ========================================================================== */
+.stats-section {
+    background-color: var(--primary);
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.stats-number {
+    color: var(--secondary-fixed);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.stats-label {
+    color: var(--primary-fixed-dim);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   WHY CHOOSE US SECTION
+   ========================================================================== */
+.why-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--background);
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.title-line {
+    width: 6rem;
+    height: 4px;
+    background-color: var(--secondary);
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 9999px;
+}
+
+.why-card {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--outline-variant);
+    transition: all 0.2s ease-in-out;
+    height: 100%;
+}
+
+.why-card:hover {
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.why-icon-container {
+    width: 56px;
+    height: 56px;
+    background-color: var(--surface-container-low);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+    transition: all 0.2s ease-in-out;
+}
+
+.why-card:hover .why-icon-container {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+
+.why-icon-container span {
+    font-size: 30px;
+}
+
+.why-card-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+}
+
+.why-card-text {
+    color: var(--on-surface-variant);
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   POPULAR COURSES SECTION
+   ========================================================================== */
+.courses-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--surface-container-low);
+}
+
+.section-subtitle {
+    color: var(--on-surface-variant);
+    margin-bottom: 0;
+}
+
+.view-all-link {
+    color: var(--secondary);
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.icon-arrow {
+    transition: transform 0.2s ease-in-out;
+}
+
+.view-all-link:hover .icon-arrow {
+    transform: translateX(4px);
+}
+
+.course-card {
+    background-color: var(--white);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--outline-variant);
+    transition: all 0.2s ease-in-out;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.course-card:hover {
+    box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
+.course-img-wrapper {
+    height: 12rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.course-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+.course-card:hover .course-img {
+    transform: scale(1.1);
+}
+
+.badge-bestseller {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--secondary);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.course-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.course-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.course-author {
+    color: var(--on-surface-variant);
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+.course-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    display: flex;
+    color: var(--secondary);
+}
+
+.star-icon {
+    font-size: 14px;
+}
+
+.star-icon.filled {
+    font-variation-settings: "FILL" 1;
+}
+
+.reviews-count {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+}
+
+.course-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--outline-variant);
+    padding-top: 1rem;
+    margin-top: auto;
+}
+
+.course-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.btn-enroll {
+    color: var(--secondary);
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.btn-enroll:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   TESTIMONIALS SECTION
+   ========================================================================== */
+.testimonials-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--primary);
+    overflow: hidden;
+}
+
+.testimonials-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.testimonials-subtitle {
+    color: var(--primary-fixed-dim);
+    margin-bottom: 0;
+}
+
+.testimonial-card {
+    background-color: var(--primary-container);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-on-primary-container-20);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-text {
+    color: var(--white);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.author-img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author-name {
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.author-title {
+    color: var(--primary-fixed-dim);
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   FAQ SECTION
+   ========================================================================== */
+.faq-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: var(--background);
+}
+
+.faq-container {
+    max-width: 48rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.faq-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.faq-subtitle {
+    color: var(--on-surface-variant);
+    margin-bottom: 3rem;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.faq-item {
+    border: 1px solid var(--outline-variant);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background-color: var(--white);
+}
+
+.faq-toggle {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    background-color: var(--surface-container-low);
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.faq-toggle:hover {
+    background-color: var(--surface-container);
+}
+
+.faq-question {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.faq-toggle .arrow-icon {
+    color: var(--secondary);
+    transition: transform 0.3s ease-in-out;
+}
+
+.faq-toggle .arrow-icon.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.faq-content {
+    padding: 1rem 1.5rem;
+    color: var(--on-surface-variant);
+    border-top: 1px solid var(--outline-variant);
+}
