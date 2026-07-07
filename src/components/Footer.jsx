@@ -31,13 +31,11 @@ function Footer() {
             <h6 className="footer-heading">Company</h6>
             <a className="footer-link" href="#">About Us</a>
             <a className="footer-link" href="#">Careers</a>
-            <a className="footer-link" href="#">Support</a>
           </div>
           <div className="col-6 col-md-3 footer-links">
             <h6 className="footer-heading">Legal</h6>
             <a className="footer-link" href="#">Terms of Service</a>
             <a className="footer-link" href="#">Privacy Policy</a>
-            <a className="footer-link" href="#">Help Center</a>
           </div>
           <div className="col-12 col-md-3 footer-newsletter">
             <h6 className="footer-heading">Newsletter</h6>

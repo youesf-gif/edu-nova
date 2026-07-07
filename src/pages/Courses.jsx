@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import CourseCard from "../components/CourseCard";
+import CategorySidebar from "../components/CategorySidebar";
 import "../styles/home.css";
 import "../styles/courses.css";
 
@@ -90,9 +92,7 @@ const coursesData = [
         imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDGv2jHs0-4-kCw2wko4Hgr2c3nIdJid4zN69dDfFcrTwq1Q3p_d0eGFy8uM0JINDEfgFqKdEZRZdzWP7kDbTDGXrzqn9fR2M2pSf9m5_x0lwKizZAeFM_T_IZtNm8_e2anvLiIZuP1KTPiNOuVpYAEC1ddw3I4epdHETFFA7feAJKVR0Gjq_LyWcjowu4wxMKAOA2-AeF23JloTLZeQrrR0zuCl2kIQ5sKY6ZYIJRN9pYBvwRnVaqRajwhvix_JOZFNoQ6NlAYRpE",
         imgAlt: "A clean, minimalist studio shot of photography equipment including a high-end mirrorless camera, lenses, and softbox lighting setups.",
     },
-];
-
-// Available categories with icons
+];// Available categories with icons
 const categories = [
     { name: "All Courses", icon: "grid_view" },
     { name: "Design", icon: "palette" },
@@ -101,12 +101,15 @@ const categories = [
     { name: "Marketing", icon: "campaign" },
 ];
 
+const COURSES_PER_PAGE = 6;
+
 function Courses() {
     const [selectedCategory, setSelectedCategory] = useState("All Courses");
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedDifficulties, setSelectedDifficulties] = useState([]);
     const [sortBy, setSortBy] = useState("popular");
     const [currentPage, setCurrentPage] = useState(1);
+    const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
 
     // Toggle difficulty filters selection
     const handleDifficultyToggle = (difficulty) => {
@@ -115,52 +118,10 @@ function Courses() {
                 ? prev.filter((d) => d !== difficulty)
                 : [...prev, difficulty],
         );
+        setCurrentPage(1); // Reset page on filter change
     };
 
-    // Helper to render rating stars dynamically
-    const renderStars = (rating) => {
-        const stars = [];
-        for (let i = 1; i <= 5; i++) {
-            if (i <= Math.floor(rating)) {
-                stars.push(
-                    <span
-                        key={i}
-                        className="material-symbols-outlined star-icon filled"
-                    >
-                        star
-                    </span>,
-                );
-            } else if (i === Math.ceil(rating) && rating % 1 >= 0.9) {
-                stars.push(
-                    <span
-                        key={i}
-                        className="material-symbols-outlined star-icon filled"
-                    >
-                        star
-                    </span>,
-                );
-            } else if (i === Math.ceil(rating) && rating % 1 >= 0.4) {
-                stars.push(
-                    <span
-                        key={i}
-                        className="material-symbols-outlined star-icon"
-                    >
-                        star_half
-                    </span>,
-                );
-            } else {
-                stars.push(
-                    <span
-                        key={i}
-                        className="material-symbols-outlined star-icon"
-                    >
-                        star
-                    </span>,
-                );
-            }
-        }
-        return stars;
-    };
+
 
     // Filter and sort logic
     const filteredCourses = coursesData
@@ -203,94 +164,38 @@ function Courses() {
             return b.rating - a.rating;
         });
 
+    // Pagination calculations
+    const totalCourses = filteredCourses.length;
+    const totalPages = Math.ceil(totalCourses / COURSES_PER_PAGE);
+    const safeCurrentPage = Math.min(currentPage, Math.max(1, totalPages));
+
+    const startIndex = (safeCurrentPage - 1) * COURSES_PER_PAGE;
+    const endIndex = startIndex + COURSES_PER_PAGE;
+    const paginatedCourses = filteredCourses.slice(startIndex, endIndex);
+
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+    }
+
     return (
         <>
             <Navbar />
 
             <div className="d-flex w-100 courses-main-container">
                 {/* SideNavBar */}
-                <aside className="d-none d-lg-flex flex-column courses-sidebar">
-                    <div className="mb-4">
-                        <h2 className="font-headline-md text-headline-md text-primary mb-1">
-                            Categories
-                        </h2>
-                        <p className="font-body-md text-label-md text-on-surface-variant m-0">
-                            Filter by interest
-                        </p>
-                    </div>
-
-                    <nav className="d-flex flex-column gap-2 mb-4">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat.name}
-                                className={`category-filter-btn ${selectedCategory === cat.name ? "active" : ""}`}
-                                onClick={() => setSelectedCategory(cat.name)}
-                            >
-                                <span className="material-symbols-outlined">
-                                    {cat.icon}
-                                </span>
-                                <span>{cat.name}</span>
-                            </button>
-                        ))}
-                    </nav>
-
-                    <div className="border-top border-outline-variant pt-4">
-                        <h3 className="font-label-md text-label-md text-primary font-bold mb-3">
-                            Difficulty
-                        </h3>
-                        <div className="d-flex flex-column gap-2 difficulty-filter-group">
-                            {["Beginner", "Intermediate", "Advanced"].map(
-                                (level) => (
-                                    <label
-                                        key={level}
-                                        className="d-flex align-items-center gap-2 text-label-md cursor-pointer group"
-                                    >
-                                        <input
-                                            className="form-check-input rounded border-outline-variant"
-                                            type="checkbox"
-                                            checked={selectedDifficulties.includes(
-                                                level,
-                                            )}
-                                            onChange={() =>
-                                                handleDifficultyToggle(level)
-                                            }
-                                        />
-                                        <span className="group-hover:text-primary transition-colors">
-                                            {level}
-                                        </span>
-                                    </label>
-                                ),
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Quick links at bottom of sidebar */}
-                    <div className="mt-auto border-top border-outline-variant pt-3 d-flex flex-column gap-2">
-                        <a
-                            className="d-flex align-items-center gap-2 text-on-surface-variant hover-text-secondary text-decoration-none py-1"
-                            href="#"
-                        >
-                            <span className="material-symbols-outlined">
-                                help
-                            </span>
-                            <span className="font-label-md">Support</span>
-                        </a>
-                        <a
-                            className="d-flex align-items-center gap-2 text-on-surface-variant hover-text-secondary text-decoration-none py-1"
-                            href="#"
-                        >
-                            <span className="material-symbols-outlined">
-                                settings
-                            </span>
-                            <span className="font-label-md">Settings</span>
-                        </a>
-                    </div>
-                </aside>
+                <CategorySidebar
+                    selectedCategory={selectedCategory}
+                    setSelectedCategory={setSelectedCategory}
+                    selectedDifficulties={selectedDifficulties}
+                    handleDifficultyToggle={handleDifficultyToggle}
+                    categories={categories}
+                />
 
                 {/* Main Content Area */}
                 <main className="flex-grow-1 p-gutter bg-background overflow-y-auto">
                     {/* Header & Filters Section */}
-                    <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+                    <div className="d-flex flex-column flex-xl-row justify-content-between align-items-xl-end gap-3 mb-4">
                         <div>
                             <h1 className="font-headline-xl text-headline-xl text-primary mb-0">
                                 Explore All Courses
@@ -301,32 +206,48 @@ function Courses() {
                             </p>
                         </div>
 
-                        <div className="d-flex flex-column flex-sm-row align-items-sm-center gap-3">
+                        <div className="d-flex flex-column flex-lg-row align-items-lg-center gap-3 w-100 w-lg-auto">
                             {/* Search input inside main content for better usability */}
-                            <div className="position-relative">
+                            <div className="position-relative w-100 w-lg-auto">
                                 <span className="material-symbols-outlined position-absolute left-3 top-1/2 -translate-y-1/2 text-outline">
                                     search
                                 </span>
                                 <input
-                                    className="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-label-md transition-all search-input"
+                                    className="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-label-md transition-all search-input w-100"
                                     placeholder="Search courses..."
                                     type="text"
+                                    aria-label="Search courses"
                                     value={searchQuery}
-                                    onChange={(e) =>
-                                        setSearchQuery(e.target.value)
-                                    }
+                                    onChange={(e) => {
+                                        setSearchQuery(e.target.value);
+                                        setCurrentPage(1);
+                                    }}
                                 />
                             </div>
 
-                            <div className="d-flex align-items-center gap-2 text-label-md text-on-surface-variant justify-content-between">
-                                <span className="text-nowrap me-2">
+                            <div className="d-flex align-items-center gap-2 text-label-md text-on-surface-variant justify-content-between justify-content-lg-start w-100 w-lg-auto">
+                                <button
+                                    type="button"
+                                    className="btn btn-outline-secondary d-lg-none d-flex align-items-center gap-1 px-3 py-1 text-label-md rounded-lg"
+                                    onClick={() => setIsOffcanvasOpen(true)}
+                                >
+                                    <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>
+                                        filter_list
+                                    </span>
+                                    <span>Filters</span>
+                                </button>
+                                <span className="text-nowrap me-2 d-none d-lg-inline">
                                     Showing {filteredCourses.length} of{" "}
                                     {coursesData.length} courses
                                 </span>
                                 <select
-                                    className="form-select bg-surface border border-outline-variant rounded-lg px-3 py-1 text-label-md w-auto"
+                                    className="form-select bg-surface border border-outline-variant rounded-lg px-3 py-1 text-label-md w-auto ms-auto ms-lg-0"
                                     value={sortBy}
-                                    onChange={(e) => setSortBy(e.target.value)}
+                                    aria-label="Sort courses by"
+                                    onChange={(e) => {
+                                        setSortBy(e.target.value);
+                                        setCurrentPage(1);
+                                    }}
                                 >
                                     <option value="popular">
                                         Most Popular
@@ -336,6 +257,12 @@ function Courses() {
                                         Price: Low to High
                                     </option>
                                 </select>
+                            </div>
+                            
+                            {/* Showing count displayed on its own row below Filters/Sort on mobile and tablet */}
+                            <div className="text-label-md text-on-surface-variant d-lg-none w-100 mt-1">
+                                Showing {filteredCourses.length} of{" "}
+                                {coursesData.length} courses
                             </div>
                         </div>
                     </div>
@@ -351,105 +278,88 @@ function Courses() {
                             </p>
                         </div>
                     ) : (
-                        <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-                            {filteredCourses.map((course) => (
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            {paginatedCourses.map((course) => (
                                 <div className="col" key={course.id}>
-                                    <div className="course-card group">
-                                        <div className="course-img-wrapper">
-                                            <img
-                                                className="course-img"
-                                                src={course.imgSrc}
-                                                alt={course.imgAlt}
-                                            />
-                                            {course.badge && (
-                                                <span className="badge-bestseller">
-                                                    {course.badge}
-                                                </span>
-                                            )}
-                                        </div>
-                                        <div className="course-body">
-                                            <div className="d-flex justify-content-between align-items-start mb-2">
-                                                <h4 className="course-title line-clamp-2 mb-0 pe-2">
-                                                    {course.title}
-                                                </h4>
-                                                <span className="course-price text-secondary text-nowrap">
-                                                    {course.price}
-                                                </span>
-                                            </div>
-                                            <p className="course-author mb-2">
-                                                {course.author}
-                                            </p>
-                                            <div className="course-rating mt-auto mb-3">
-                                                <span className="text-secondary font-bold text-label-md me-1">
-                                                    {course.rating}
-                                                </span>
-                                                <div className="stars me-2">
-                                                    {renderStars(course.rating)}
-                                                </div>
-                                                <span className="reviews-count">
-                                                    ({course.reviews})
-                                                </span>
-                                            </div>
-                                            <div className="course-footer pt-3 border-top border-outline-variant/30">
-                                                <button className="btn btn-view-details w-100">
-                                                    View Details
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <CourseCard course={course} />
                                 </div>
                             ))}
                         </div>
                     )}
 
-                    {/* Pagination */}
-                    <div className="mt-5 d-flex justify-content-center align-items-center gap-2">
-                        <button
-                            className="pagination-btn"
-                            disabled={currentPage === 1}
-                            onClick={() => setCurrentPage(1)}
-                        >
-                            <span className="material-symbols-outlined">
-                                chevron_left
-                            </span>
-                        </button>
-                        <button
-                            className={`pagination-btn ${currentPage === 1 ? "active" : ""}`}
-                            onClick={() => setCurrentPage(1)}
-                        >
-                            1
-                        </button>
-                        <button
-                            className={`pagination-btn ${currentPage === 2 ? "active" : ""}`}
-                            onClick={() => setCurrentPage(2)}
-                        >
-                            2
-                        </button>
-                        <button
-                            className={`pagination-btn ${currentPage === 3 ? "active" : ""}`}
-                            onClick={() => setCurrentPage(3)}
-                        >
-                            3
-                        </button>
-                        <span className="px-2 text-outline">...</span>
-                        <button
-                            className={`pagination-btn ${currentPage === 12 ? "active" : ""}`}
-                            onClick={() => setCurrentPage(12)}
-                        >
-                            12
-                        </button>
-                        <button
-                            className="pagination-btn"
-                            disabled={currentPage === 12}
-                            onClick={() => setCurrentPage(12)}
-                        >
-                            <span className="material-symbols-outlined">
-                                chevron_right
-                            </span>
-                        </button>
-                    </div>
+                    {/* Pagination - only render if there are more courses than COURSES_PER_PAGE */}
+                    {totalCourses > COURSES_PER_PAGE && (
+                        <div className="mt-5 d-flex justify-content-center align-items-center gap-2">
+                            <button
+                                type="button"
+                                className="pagination-btn"
+                                disabled={safeCurrentPage === 1}
+                                onClick={() => setCurrentPage(safeCurrentPage - 1)}
+                            >
+                                <span className="material-symbols-outlined">
+                                    chevron_left
+                                </span>
+                            </button>
+                            
+                            {pageNumbers.map((page) => (
+                                <button
+                                    type="button"
+                                    key={page}
+                                    className={`pagination-btn ${safeCurrentPage === page ? "active" : ""}`}
+                                    onClick={() => setCurrentPage(page)}
+                                >
+                                    {page}
+                                </button>
+                            ))}
+
+                            <button
+                                type="button"
+                                className="pagination-btn"
+                                disabled={safeCurrentPage === totalPages}
+                                onClick={() => setCurrentPage(safeCurrentPage + 1)}
+                            >
+                                <span className="material-symbols-outlined">
+                                    chevron_right
+                                </span>
+                            </button>
+                        </div>
+                    )}
                 </main>
             </div>
+
+            {/* Mobile Filters Offcanvas Drawer */}
+            <div
+                className={`offcanvas offcanvas-start ${isOffcanvasOpen ? "show" : ""}`}
+                style={{ visibility: isOffcanvasOpen ? "visible" : "hidden" }}
+                tabIndex="-1"
+                id="mobileFiltersOffcanvas"
+            >
+                <div className="offcanvas-header border-bottom">
+                    <h5 className="offcanvas-title text-primary font-bold">Filters</h5>
+                    <button
+                        type="button"
+                        className="btn-close"
+                        aria-label="Close"
+                        onClick={() => setIsOffcanvasOpen(false)}
+                    ></button>
+                </div>
+                <div className="offcanvas-body">
+                    <CategorySidebar
+                        selectedCategory={selectedCategory}
+                        setSelectedCategory={setSelectedCategory}
+                        selectedDifficulties={selectedDifficulties}
+                        handleDifficultyToggle={handleDifficultyToggle}
+                        categories={categories}
+                        className="d-flex flex-column courses-sidebar-mobile"
+                    />
+                </div>
+            </div>
+            {isOffcanvasOpen && (
+                <div
+                    className="offcanvas-backdrop fade show"
+                    onClick={() => setIsOffcanvasOpen(false)}
+                ></div>
+            )}
 
             <Footer />
         </>

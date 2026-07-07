@@ -182,3 +182,30 @@
     border-top: 1px solid rgba(197, 198, 205, 0.3) !important;
     padding-top: 1rem !important;
 }
+
+/* ==========================================================================
+   MOBILE FILTERS DRAWER (OFFCANVAS) STYLES
+   ========================================================================== */
+
+.offcanvas {
+    background-color: var(--surface-container-low) !important;
+    border-right: 1px solid var(--outline-variant) !important;
+    z-index: 1050;
+    transition: transform 0.3s ease-in-out;
+}
+
+.offcanvas-header {
+    border-bottom: 1px solid var(--outline-variant) !important;
+}
+
+.offcanvas-backdrop {
+    z-index: 1040;
+}
+
+.courses-sidebar-mobile {
+    width: 100% !important;
+    padding: 0 !important;
+    background-color: transparent !important;
+    border-right: none !important;
+}
+
