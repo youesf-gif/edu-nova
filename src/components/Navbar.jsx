@@ -13,7 +13,7 @@ function Navbar({ minimal = false }) {
             <Link className="font-headline-md fw-bold text-primary cursor-pointer text-decoration-none" to="/">EduNova</Link>
             <nav className="d-none d-md-flex gap-6 align-items-center">
               <Link className="font-body-md text-on-surface-variant hover-text-secondary transition-colors cursor-pointer text-decoration-none" to="/">Home</Link>
-              <a className="font-body-md text-on-surface-variant hover-text-secondary transition-colors cursor-pointer text-decoration-none" href="#">All Courses</a>
+              <Link className="font-body-md text-on-surface-variant hover-text-secondary transition-colors cursor-pointer text-decoration-none" to="/courses">All Courses</Link>
             </nav>
           </div>
         </div>
@@ -24,7 +24,7 @@ function Navbar({ minimal = false }) {
               <Link className="logo" to="/">EduNova</Link>
               <div className="desktop-nav-links">
                 <NavLink className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} to="/">Home</NavLink>
-                <a className="nav-link" href="#">All Courses</a>
+                <NavLink className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} to="/courses">All Courses</NavLink>
               </div>
             </div>
             <div className="desktop-auth-buttons">
@@ -48,7 +48,7 @@ function Navbar({ minimal = false }) {
           >
             <div className="mobile-menu-inner">
               <NavLink className={({ isActive }) => `mobile-link ${isActive ? "active" : ""}`} to="/">Home</NavLink>
-              <a className="mobile-link" href="#">All Courses</a>
+              <NavLink className={({ isActive }) => `mobile-link ${isActive ? "active" : ""}`} to="/courses">All Courses</NavLink>
               <hr className="mobile-divider" />
               <Link className="btn-mobile-login text-decoration-none text-center" to="/login">Login</Link>
               <Link className="btn-mobile-signup text-decoration-none text-center" to="/register">Sign Up</Link>

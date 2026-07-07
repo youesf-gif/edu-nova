@@ -99,3 +99,41 @@
   box-shadow: none !important;
   outline: none !important;
 }
+
+/* ==========================================================================
+   VERTICAL SPACING OPTIMIZATIONS FOR LOGIN & REGISTER PAGES
+   ========================================================================== */
+
+/* Reduce outer vertical padding on large screens */
+@media (min-width: 768px) {
+  .register-right-panel {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
+
+/* Reduce spacing between large layout sections (Header, Form, Divider, Social Buttons) */
+.register-right-panel .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.15rem !important; /* reduced from 2rem */
+}
+
+/* Reduce spacing below main page headings */
+.register-right-panel .space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.25rem !important; /* reduced from 0.5rem */
+}
+
+/* Reduce vertical spacing between form groups (inputs) */
+.register-right-panel form.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.85rem !important; /* reduced from 1.5rem */
+}
+
+/* Reduce padding around the "OR LOGIN/REGISTER WITH" divider */
+.register-right-panel .position-relative.py-4 {
+  padding-top: 0.35rem !important; /* reduced from 1.5rem */
+  padding-bottom: 0.35rem !important; /* reduced from 1.5rem */
+}
+
+/* Reduce spacing above social login buttons */
+.register-right-panel .row.g-3 {
+  margin-top: 0.25rem !important; /* reduced from 1rem/2rem */
+}

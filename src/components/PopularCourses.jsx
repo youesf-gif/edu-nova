@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function PopularCourses() {
   const [pressedIndex, setPressedIndex] = useState(null);
@@ -47,9 +48,9 @@ function PopularCourses() {
             <h2 className="section-title mb-0">Most Popular Courses</h2>
             <p className="section-subtitle">Explore top-rated learning experiences chosen by thousands.</p>
           </div>
-          <a className="view-all-link group" href="#">
+          <Link className="view-all-link group text-decoration-none" to="/courses">
             View All Courses <span className="material-symbols-outlined icon-arrow">arrow_forward</span>
-          </a>
+          </Link>
         </div>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {courses.map((course, index) => (
