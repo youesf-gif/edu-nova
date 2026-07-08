@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 function CourseCard({ course }) {
     // Helper to render rating stars dynamically
@@ -78,9 +78,9 @@ function CourseCard({ course }) {
                     <span className="reviews-count">({course.reviews})</span>
                 </div>
                 <div className="course-footer pt-3 border-top border-outline-variant/30">
-                    <button type="button" className="btn btn-view-details w-100">
+                    <Link to={`/courses/${course.id}`} className="btn btn-view-details w-100 text-decoration-none d-inline-flex align-items-center justify-content-center">
                         View Details
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

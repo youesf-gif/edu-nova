@@ -1,0 +1,1013 @@
+ :root {
+     --inverse-on-surface: #eaf1ff;
+     --tertiary-container: #26292b;
+     --tertiary-fixed-dim: #c4c7c9;
+     --secondary: #006a61;
+     --on-secondary-container: #01534d;
+     --surface-container-lowest: #ffffff;
+     --on-background: #0b1c30;
+     --inverse-primary: #bcc7de;
+     --surface-container: #e5eeff;
+     --on-error: #ffffff;
+     --on-tertiary: #ffffff;
+     --outline-variant: #c5c6cd;
+     --surface: #f8f9ff;
+     --on-surface-variant: #45474c;
+     --surface-container-high: #dce9ff;
+     --primary-fixed: #d8e3fb;
+     --secondary-fixed-dim: #6bd8cb;
+     --on-surface: #0b1c30;
+     --on-primary: #ffffff;
+     --on-primary-fixed-variant: #3c475a;
+     --on-tertiary-fixed-variant: #444749;
+     --tertiary-fixed: #e0e3e5;
+     --surface-container-low: #eff4ff;
+     --on-primary-container: #8590a6;
+     --primary: #091426;
+     --on-tertiary-container: #8d9092;
+     --surface-dim: #cbdbf5;
+     --error-container: #ffdad6;
+     --surface-variant: #d3e4fe;
+     --error: #ba1a1a;
+     --tertiary: #111516;
+     --secondary-fixed: #89f5e7;
+     --on-error-container: #93000a;
+     --on-primary-fixed: #111c2d;
+     --primary-container: #1e293b;
+     --secondary-container: #86f2e4;
+     --on-secondary: #ffffff;
+     --surface-tint: #545f73;
+     --background: #f8f9ff;
+     --outline: #75777d;
+     --on-secondary-fixed: #00201d;
+     --surface-container-highest: #d3e4fe;
+     --surface-bright: #f8f9ff;
+     --on-secondary-fixed-variant: #005049;
+     --primary-fixed-dim: #bcc7de;
+     --inverse-surface: #213145;
+     --on-tertiary-fixed: #191c1e;
+
+     /* Spacings */
+     --gutter: 1.5rem;
+     --container-max: 1320px;
+ }
+
+ body {
+     font-family: 'Inter', sans-serif;
+     background-color: var(--background);
+     color: var(--on-surface);
+     font-size: 16px;
+     font-weight: 400;
+     line-height: 1.5;
+ }
+
+ .scroll-smooth {
+     scroll-behavior: smooth;
+ }
+
+ /* Material symbols display settings */
+ .material-symbols-outlined {
+     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+     display: inline-block;
+     vertical-align: middle;
+     line-height: 1;
+ }
+
+ /* Spacing stacks matching Tailwind spacing values precisely */
+ .space-y-2>*+* {
+     margin-top: 0.5rem !important;
+ }
+
+ .space-y-3>*+* {
+     margin-top: 0.75rem !important;
+ }
+
+ .space-y-4>*+* {
+     margin-top: 1rem !important;
+ }
+
+ .space-y-6>*+* {
+     margin-top: 1.5rem !important;
+ }
+
+ .space-y-8>*+* {
+     margin-top: 2rem !important;
+ }
+
+ .space-y-12>*+* {
+     margin-top: 3rem !important;
+ }
+
+ .gap-2 {
+     gap: 0.5rem !important;
+ }
+
+ .gap-3 {
+     gap: 0.75rem !important;
+ }
+
+ .gap-4 {
+     gap: 1rem !important;
+ }
+
+ .gap-6 {
+     gap: 1.5rem !important;
+ }
+
+ .gap-8 {
+     gap: 2rem !important;
+ }
+
+ .gap-12 {
+     gap: 3rem !important;
+ }
+
+ /* Container Max Width */
+ .max-w-container-max {
+     max-width: var(--container-max);
+     width: 100%;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+ .px-gutter {
+     padding-left: var(--gutter) !important;
+     padding-right: var(--gutter) !important;
+ }
+
+ /* Custom Paddings & Margins */
+ .py-12 {
+     padding-top: 3rem !important;
+     padding-bottom: 3rem !important;
+ }
+
+ .py-16 {
+     padding-top: 4rem !important;
+     padding-bottom: 4rem !important;
+ }
+
+ .pt-6 {
+     padding-top: 1.5rem !important;
+ }
+
+ .pt-8 {
+     padding-top: 2rem !important;
+ }
+
+ .mb-6 {
+     margin-bottom: 1.5rem !important;
+ }
+
+ .mb-8 {
+     margin-bottom: 2rem !important;
+ }
+
+ .mb-12 {
+     margin-bottom: 3rem !important;
+ }
+
+ @media (min-width: 992px) {
+     .py-lg-16 {
+         padding-top: 4rem !important;
+         padding-bottom: 4rem !important;
+     }
+ }
+
+ /* Grid gaps */
+ .g-8 {
+     --bs-gutter-x: 2rem !important;
+     --bs-gutter-y: 2rem !important;
+ }
+
+ .g-12 {
+     --bs-gutter-x: 3rem !important;
+     --bs-gutter-y: 3rem !important;
+ }
+
+ /* Typography matching config sizes */
+ .font-headline-xl {
+     font-size: 48px;
+     line-height: 1.2;
+     letter-spacing: -0.02em;
+     font-weight: 700;
+ }
+
+ .font-headline-lg {
+     font-size: 32px;
+     line-height: 1.25;
+     letter-spacing: -0.01em;
+     font-weight: 600;
+ }
+
+ .font-headline-md {
+     font-size: 24px;
+     line-height: 1.4;
+     font-weight: 600;
+ }
+
+ .font-headline-sm {
+     font-size: 20px;
+     line-height: 1.4;
+     font-weight: 600;
+ }
+
+ .font-body-lg {
+     font-size: 18px;
+     line-height: 1.6;
+     font-weight: 400;
+ }
+
+ .font-body-md {
+     font-size: 16px;
+     line-height: 1.5;
+     font-weight: 400;
+ }
+
+ .font-label-md {
+     font-size: 14px;
+     line-height: 1;
+     letter-spacing: 0.01em;
+     font-weight: 500;
+ }
+
+ .font-label-sm {
+     font-size: 12px;
+     line-height: 1;
+     font-weight: 600;
+ }
+
+ @media (max-width: 991px) {
+     .font-headline-xl {
+         font-size: 32px;
+     }
+
+     .font-body-lg {
+         font-size: 16px;
+     }
+ }
+
+ /* Colors */
+ .bg-background {
+     background-color: var(--background) !important;
+ }
+
+ .bg-surface {
+     background-color: var(--surface) !important;
+ }
+
+ .bg-surface-container {
+     background-color: var(--surface-container) !important;
+ }
+
+ .bg-surface-container-low {
+     background-color: var(--surface-container-low) !important;
+ }
+
+ .bg-surface-container-high {
+     background-color: var(--surface-container-high) !important;
+ }
+
+ .bg-surface-container-highest {
+     background-color: var(--surface-container-highest) !important;
+ }
+
+ .bg-primary-container {
+     background-color: var(--primary-container) !important;
+ }
+
+ .bg-primary {
+     background-color: var(--primary) !important;
+ }
+
+ .bg-secondary {
+     background-color: var(--secondary) !important;
+ }
+
+ .bg-secondary-container {
+     background-color: var(--secondary-container) !important;
+ }
+
+ .bg-white {
+     background-color: #ffffff !important;
+ }
+
+ .text-primary {
+     color: var(--primary) !important;
+ }
+
+ .text-secondary {
+     color: var(--secondary) !important;
+ }
+
+ .text-on-surface {
+     color: var(--on-surface) !important;
+ }
+
+ .text-on-surface-variant {
+     color: var(--on-surface-variant) !important;
+ }
+
+ .text-on-primary {
+     color: var(--on-primary) !important;
+ }
+
+ .text-on-primary-container {
+     color: var(--on-primary-container) !important;
+ }
+
+ .text-secondary-fixed {
+     color: var(--secondary-fixed) !important;
+ }
+
+ .text-secondary-fixed-dim {
+     color: var(--secondary-fixed-dim) !important;
+ }
+
+ .text-white {
+     color: #ffffff !important;
+ }
+
+ /* Borders and outlines */
+ .border-outline-variant {
+     border-color: var(--outline-variant) !important;
+ }
+
+ .border-outline-variant-30 {
+     border-color: rgba(197, 198, 205, 0.3) !important;
+ }
+
+ .border-outline-variant-50 {
+     border-color: rgba(197, 198, 205, 0.5) !important;
+ }
+
+ .border-primary-container {
+     border-color: var(--primary-container) !important;
+ }
+
+ /* Custom Hover & Interactive Classes */
+ .hover-text-secondary:hover {
+     color: var(--secondary) !important;
+ }
+
+ .hover-text-primary:hover {
+     color: var(--primary) !important;
+ }
+
+ .hover-text-secondary-fixed:hover {
+     color: var(--secondary-fixed) !important;
+ }
+
+ .hover-text-white:hover {
+     color: #ffffff !important;
+ }
+
+ .hover-bg-on-secondary-container:hover {
+     background-color: var(--on-secondary-container) !important;
+ }
+
+ .hover-bg-primary-container:hover {
+     background-color: var(--primary-container) !important;
+ }
+
+ .hover-bg-surface-container-high:hover {
+     background-color: var(--surface-container-high) !important;
+ }
+
+ /* ============================================================
+           ACCORDION — pixel-accurate match of original course-details.html
+           ============================================================ */
+
+ /* Accordion wrapper: space-y-4 between items */
+ #curriculum .space-y-4>*+* {
+     margin-top: 1rem;
+ }
+
+ /* Each accordion item: rounded-lg = 8px, border, overflow-hidden */
+ .accordion-item {
+     border-radius: 0.5rem !important;
+     /* rounded-lg = 0.5rem per Tailwind config */
+     border: 1px solid var(--outline-variant) !important;
+     overflow: hidden;
+ }
+
+ /* Accordion toggle button — full reset + exact original layout */
+ .accordion-item>button {
+     width: 100%;
+     display: flex !important;
+     align-items: center !important;
+     justify-content: space-between !important;
+     text-align: left !important;
+     background-color: var(--surface) !important;
+     border: 0 !important;
+     outline: none !important;
+     box-shadow: none !important;
+     border-radius: 0 !important;
+     /* Tailwind p-4: 16px on mobile */
+     padding: 1rem !important;
+     transition: background-color 0.2s, transform 0.1s ease-in-out !important;
+     cursor: pointer;
+ }
+
+ /* sm:p-6 equivalent — Bootstrap sm breakpoint = 576px */
+ @media (min-width: 576px) {
+     .accordion-item>button {
+         padding: 1.5rem !important;
+     }
+ }
+
+ .accordion-item>button:focus {
+     outline: none !important;
+     box-shadow: none !important;
+ }
+
+ .accordion-item>button:hover {
+     background-color: var(--surface-container-high) !important;
+ }
+
+ /* Left flex group: number + text — gap-4 = 1rem */
+ .accordion-item>button>.acc-left {
+     display: flex;
+     align-items: center;
+     gap: 1rem;
+     /* gap-4 */
+ }
+
+ /* Section number: font-headline-md, secondary/30 opacity */
+ .accordion-item>button .acc-number {
+     font-size: 24px;
+     line-height: 1.4;
+     font-weight: 600;
+     color: var(--secondary);
+     opacity: 0.3;
+     flex-shrink: 0;
+ }
+
+ /* Title text block — no margin between h3 and p */
+ .accordion-item>button .acc-title {
+     /* container */
+ }
+
+ .accordion-item>button .acc-title h3 {
+     font-size: 20px;
+     /* font-headline-sm */
+     line-height: 1.4;
+     font-weight: 600;
+     color: var(--primary);
+     margin: 0 0 0 0 !important;
+     /* no margin */
+ }
+
+ .accordion-item>button .acc-title p {
+     font-size: 12px;
+     /* font-label-sm */
+     line-height: 1;
+     font-weight: 600;
+     color: var(--on-surface-variant);
+     margin: 0 !important;
+ }
+
+ /* Chevron icon — smooth rotation */
+ .accordion-item>button .chevron-icon {
+     font-size: 24px;
+     color: var(--on-surface-variant);
+     transition: transform 0.3s ease-out;
+     flex-shrink: 0;
+ }
+
+ .accordion-item.active>button .chevron-icon {
+     transform: rotate(180deg);
+ }
+
+ /* Accordion content — max-height animation */
+ .accordion-content {
+     max-height: 0;
+     overflow: hidden;
+     transition: max-height 0.3s ease-out;
+ }
+
+ .accordion-item.active .accordion-content {
+     max-height: 500px;
+ }
+
+ /* Content inner wrapper: p-6 = 1.5rem all sides, border-top at 30% opacity */
+ /* IMPORTANT: HTML uses class="acc-body-inner" — selector must match exactly */
+ .acc-body-inner {
+     padding: 1.5rem;
+     /* p-6 */
+     background-color: #ffffff;
+     border-top: 1px solid rgba(197, 198, 205, 0.3) !important;
+     /* border-outline-variant/30 */
+ }
+
+ /* Lesson rows: space-y-4 = 1rem top-margin between siblings */
+ .acc-lesson-row+.acc-lesson-row {
+     margin-top: 1rem;
+     /* space-y-4 */
+ }
+
+ /* Each lesson row: flex justify-between items-center, cursor-pointer */
+ .acc-lesson-row {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     cursor: pointer;
+ }
+
+ .acc-lesson-row:hover .acc-lesson-icon,
+ .acc-lesson-row:hover .acc-lesson-name {
+     color: var(--secondary) !important;
+ }
+
+ /* Lesson left side: icon + name — gap-3 = 0.75rem */
+ .acc-lesson-left {
+     display: flex;
+     align-items: center;
+     gap: 0.75rem;
+     /* gap-3 */
+ }
+
+ /* Icon */
+ .acc-lesson-icon {
+     font-size: 24px;
+     color: var(--on-surface-variant);
+     transition: color 0.2s;
+ }
+
+ /* Lesson name */
+ .acc-lesson-name {
+     font-size: 16px;
+     /* font-body-md */
+     line-height: 1.5;
+     font-weight: 400;
+     color: var(--on-surface);
+     transition: color 0.2s;
+ }
+
+ /* Duration label */
+ .acc-lesson-duration {
+     font-size: 14px;
+     /* font-label-md */
+     line-height: 1;
+     font-weight: 500;
+     color: var(--on-surface-variant);
+     white-space: nowrap;
+     margin-left: 1rem;
+ }
+
+ /* Glass and overlay effects */
+ .glass-effect {
+     background: rgba(255, 255, 255, 0.8);
+     backdrop-filter: blur(8px);
+     -webkit-backdrop-filter: blur(8px);
+ }
+
+ /* Button scale interaction feedback */
+ button {
+     transition: transform 0.1s ease-in-out, background-color 0.2s, color 0.2s, box-shadow 0.2s !important;
+ }
+
+ .active-scale-90:active {
+     transform: scale(0.9) !important;
+ }
+
+ .active-scale-95:active {
+     transform: scale(0.95) !important;
+ }
+
+ .active-scale-98:active {
+     transform: scale(0.98) !important;
+ }
+
+ /* Precise Shadows */
+ .shadow-sm {
+     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+ }
+
+ .shadow-md {
+     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+ }
+
+ .shadow-lg {
+     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+ }
+
+ .shadow-xl {
+     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+ }
+
+ .shadow-2xl {
+     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+ }
+
+ /* Group Hover Reproductions */
+ .group:hover .group-hover-opacity-100 {
+     opacity: 1 !important;
+ }
+
+ .group-hover-opacity-100 {
+     transition: opacity 0.2s ease-in-out;
+ }
+
+ .group:hover .group-hover-scale-100 {
+     transform: scale(1) !important;
+ }
+
+ .group-hover-scale-100 {
+     transition: transform 0.2s ease-in-out;
+ }
+
+ .group:hover .group-hover-text-secondary {
+     color: var(--secondary) !important;
+ }
+
+ .scale-90 {
+     transform: scale(0.9);
+ }
+
+ .bg-white-90 {
+     background-color: rgba(255, 255, 255, 0.9) !important;
+ }
+
+ .bg-primary-20 {
+     background-color: rgba(9, 20, 38, 0.2) !important;
+ }
+
+ /* Specific layouts */
+ .top-24-sidebar {
+     top: 6rem !important;
+ }
+
+ .w-12 {
+     width: 3rem !important;
+ }
+
+ .h-12 {
+     height: 3rem !important;
+ }
+
+ .w-32 {
+     width: 8rem !important;
+ }
+
+ .h-32 {
+     height: 8rem !important;
+ }
+
+ .rounded-xl {
+     border-radius: 0.75rem !important;
+ }
+
+ .rounded-2xl {
+     border-radius: 1rem !important;
+ }
+
+ .divider-vertical {
+     height: 1rem;
+     width: 1px;
+     background-color: rgba(197, 198, 205, 0.3);
+ }
+
+ .pl-10 {
+     padding-left: 2.5rem !important;
+ }
+
+ .pr-4 {
+     padding-right: 1rem !important;
+ }
+
+ .bottom-4 {
+     bottom: 1rem !important;
+ }
+
+ .left-4 {
+     left: 1rem !important;
+ }
+
+ .text-4xl {
+     font-size: 2.25rem !important;
+ }
+
+ .p-8 {
+     padding: 2rem !important;
+ }
+
+ .list-disc {
+     list-style-type: disc !important;
+ }
+
+ /* ============================================================
+           ENROLLMENT CARD — pixel-accurate match of original
+           ============================================================ */
+
+ /* py-0.5 = 2px top+bottom (Tailwind: 0.5 * 4px = 2px) */
+ .py-0\.5 {
+     padding-top: 0.125rem !important;
+     padding-bottom: 0.125rem !important;
+ }
+
+ /* tracking-widest = letter-spacing: 0.1em */
+ .tracking-widest {
+     letter-spacing: 0.1em !important;
+ }
+
+ /* Card outer — rounded-2xl = 1rem, shadow-xl, border */
+ .enrollment-card {
+     background-color: var(--surface) !important;
+     border: 1px solid var(--outline-variant) !important;
+     border-radius: 1rem !important;
+     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+     overflow: hidden !important;
+     transition: box-shadow 0.2s !important;
+     position: -webkit-sticky !important;
+     position: sticky !important;
+     top: calc(var(--navbar-height) + 1.5rem) !important;
+ }
+
+ .enrollment-card:hover {
+     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+ }
+
+ /* ---- Preview area ---- */
+ .card-preview {
+     position: relative !important;
+     width: 100% !important;
+     aspect-ratio: 16 / 9 !important;
+     overflow: hidden !important;
+     background-color: var(--surface-container) !important;
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+ }
+
+ .card-preview img {
+     width: 100% !important;
+     height: 100% !important;
+     object-fit: cover !important;
+     display: block !important;
+ }
+
+ .card-preview .preview-overlay {
+     position: absolute !important;
+     inset: 0 !important;
+     background-color: rgba(9, 20, 38, 0.2) !important;
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+     opacity: 0 !important;
+     transition: opacity 0.2s !important;
+ }
+
+ .card-preview:hover .preview-overlay {
+     opacity: 1 !important;
+ }
+
+ .card-preview .preview-play {
+     background-color: rgba(255, 255, 255, 0.9) !important;
+     padding: 1rem !important;
+     border-radius: 9999px !important;
+     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+     transform: scale(0.9) !important;
+     transition: transform 0.2s !important;
+ }
+
+ .card-preview:hover .preview-play {
+     transform: scale(1) !important;
+ }
+
+ /* Preview Course badge — bottom-left, dark bg with white text */
+ .card-preview .preview-badge {
+     position: absolute !important;
+     bottom: 1rem !important;
+     left: 1rem !important;
+     background-color: var(--primary) !important;
+     color: #ffffff !important;
+     padding: 0.25rem 0.75rem !important;
+     /* px-3 py-1 */
+     border-radius: 0.25rem !important;
+     /* rounded */
+     font-size: 12px !important;
+     /* font-label-sm */
+     font-weight: 600 !important;
+     line-height: 1 !important;
+     letter-spacing: 0 !important;
+ }
+
+ /* ---- Card body: padding p-8 = 2rem ---- */
+ .card-body-inner {
+     padding: 2rem !important;
+     /* p-8 */
+ }
+
+ /* space-y-6 = 1.5rem between every direct child section */
+ .card-body-inner>*+* {
+     margin-top: 1.5rem !important;
+     /* space-y-6 */
+ }
+
+ /* ---- Price row ---- */
+ /* $89.99 uses font-headline-lg = 32px — inherited from utility class, no override needed */
+ /* $149.99 old price: font-body-md in original = 16px */
+ .card-price-old {
+     font-size: 16px !important;
+     /* font-body-md */
+     font-weight: 400 !important;
+     line-height: 1.5 !important;
+     color: var(--on-surface-variant) !important;
+     text-decoration: line-through !important;
+ }
+
+ /* OFF badge */
+ .card-price-badge {
+     font-size: 12px !important;
+     /* font-label-sm */
+     font-weight: 600 !important;
+     line-height: 1 !important;
+     color: var(--secondary) !important;
+     background-color: var(--secondary-container) !important;
+     padding: 0.125rem 0.5rem !important;
+     /* py-0.5 px-2 */
+     border-radius: 0.25rem !important;
+     /* rounded */
+     white-space: nowrap !important;
+ }
+
+ /* CTA buttons spacing from Price Section is controlled by space-y-6 (1.5rem) */
+ .card-cta-buttons {
+     margin-top: 1.5rem !important;
+ }
+
+ /* ---- CTA buttons: NO Bootstrap .btn — py-4 rounded-xl font-headline-md ---- */
+ .card-btn {
+     display: block !important;
+     width: 100% !important;
+     padding: 1rem 0 !important;
+     /* py-4 */
+     font-size: 24px !important;
+     /* font-headline-md */
+     font-family: 'Inter', sans-serif !important;
+     line-height: 1.4 !important;
+     font-weight: 600 !important;
+     border-radius: 0.75rem !important;
+     /* rounded-xl */
+     border: none !important;
+     cursor: pointer !important;
+     text-align: center !important;
+     transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s !important;
+ }
+
+ .card-btn:active {
+     transform: scale(0.98) !important;
+ }
+
+ .card-btn:focus {
+     outline: none !important;
+     box-shadow: none !important;
+ }
+
+ /* Enroll Now — bg-secondary text-on-secondary shadow-md */
+ .card-btn-primary {
+     background-color: var(--secondary) !important;
+     color: var(--on-secondary) !important;
+     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+     font-size: 1rem !important;
+     font-weight: 400 !important;
+ }
+
+ .card-btn-primary:hover {
+     background-color: var(--on-secondary-container) !important;
+ }
+
+ /* Add to Cart — border-2 border-primary text-primary */
+ .card-btn-outline {
+     background-color: transparent !important;
+     color: var(--primary) !important;
+     border: 2px solid var(--primary) !important;
+     font-size: 1rem !important;
+     font-weight: 400 !important;
+ }
+
+ .card-btn-outline:hover {
+     background-color: var(--primary-container) !important;
+     color: #ffffff !important;
+ }
+
+ /* Spacing between buttons is space-y-3 = 0.75rem */
+ .card-btn+.card-btn {
+     margin-top: 0.75rem !important;
+     /* space-y-3 */
+ }
+
+ /* ---- 30-Day Guarantee: font-label-sm centered ---- */
+ .card-guarantee {
+     font-size: 12px !important;
+     /* font-label-sm */
+     font-weight: 600 !important;
+     line-height: 1 !important;
+     color: var(--on-surface-variant) !important;
+     text-align: center !important;
+     margin: 0 !important;
+     margin-top: 1.5rem !important;
+     /* space-y-6 spacing from Add to Cart button */
+ }
+
+ /* ---- Course Inclusions: pt-6 border-t space-y-4 ---- */
+ .card-inclusions {
+     padding-top: 1.5rem !important;
+     /* pt-6 */
+     border-top: 1px solid var(--outline-variant) !important;
+     margin-top: 1.5rem !important;
+     /* space-y-6 spacing from Guarantee text */
+ }
+
+ /* space-y-4 between h4 and ul = 1rem */
+ .card-inclusions>*+* {
+     margin-top: 1rem !important;
+ }
+
+ /* h4: font-label-md uppercase tracking-widest — no bottom margin */
+ .card-inclusions h4 {
+     font-size: 14px !important;
+     /* font-label-md */
+     font-weight: 500 !important;
+     /* font-label-md weight is 500 */
+     line-height: 1 !important;
+     letter-spacing: 0.1em !important;
+     /* tracking-widest */
+     color: var(--primary) !important;
+     text-transform: uppercase !important;
+     margin: 0 !important;
+     font-family: 'Inter', sans-serif !important;
+ }
+
+ /* ul reset */
+ .card-inclusions ul {
+     list-style: none !important;
+     padding: 0 !important;
+     margin-top: 1.5rem !important;
+ }
+
+ /* Spacing between list items is space-y-3 = 0.75rem */
+ .card-inclusions ul li+li {
+     margin-top: 0.75rem !important;
+     /* space-y-3 */
+ }
+
+ /* Each list item: flex items-center gap-3 font-body-md text-on-surface-variant */
+ .card-inclusions ul li {
+     display: flex !important;
+     align-items: center !important;
+     gap: 0.75rem !important;
+     /* gap-3 */
+     font-size: 16px !important;
+     /* font-body-md */
+     font-weight: 400 !important;
+     line-height: 1.5 !important;
+     color: var(--on-surface-variant) !important;
+ }
+
+ /* Icons in list: text-primary, 24px */
+ .card-inclusions ul li .material-symbols-outlined {
+     color: var(--primary) !important;
+     font-size: 24px !important;
+     /* 24px */
+     flex-shrink: 0 !important;
+     line-height: 1 !important;
+ }
+
+ /* ---- Social share: justify-center gap-6 pt-4 ---- */
+ .card-social {
+     display: flex !important;
+     justify-content: center !important;
+     gap: 1.5rem !important;
+     /* gap-6 = 24px */
+     padding-top: 1rem !important;
+     /* pt-4 = 16px */
+ }
+
+ /* Social buttons: bare icon, no Bootstrap .btn */
+ .card-social-btn {
+     background: none !important;
+     border: none !important;
+     padding: 0 !important;
+     margin: 0 !important;
+     cursor: pointer !important;
+     color: var(--on-surface-variant) !important;
+     transition: color 0.2s !important;
+     display: flex !important;
+     align-items: center !important;
+     justify-content: center !important;
+ }
+
+ .card-social-btn:hover {
+     color: var(--primary) !important;
+ }
+
+ .card-social-btn .material-symbols-outlined {
+     font-size: 24px !important;
+     /* 24px icons matching original */
+ }
+
+ /* Instructor Stats Card styling */
+ .instructor-stats-card {
+     background-color: var(--primary) !important;
+ }

@@ -1,18 +1,40 @@
-import { Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Courses from "./pages/Courses";
+import CourseDetails from "./pages/CourseDetails";
+
+const router = createBrowserRouter([
+    {
+        element: <Outlet />,
+        children: [
+            {
+                path: "/",
+                element: <Home />,
+            },
+            {
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                path: "/register",
+                element: <Register />,
+            },
+            {
+                path: "/courses",
+                element: <Courses />,
+            },
+            {
+                path: "/courses/:id",
+                element: <CourseDetails />,
+            },
+        ],
+    },
+]);
 
 function App() {
-    return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/courses" element={<Courses />} />
-        </Routes>
-    );
+    return <RouterProvider router={router} />;
 }
 
 export default App;

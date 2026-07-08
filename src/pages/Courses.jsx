@@ -258,7 +258,7 @@ function Courses() {
                                     </option>
                                 </select>
                             </div>
-                            
+
                             {/* Showing count displayed on its own row below Filters/Sort on mobile and tablet */}
                             <div className="text-label-md text-on-surface-variant d-lg-none w-100 mt-1">
                                 Showing {filteredCourses.length} of{" "}
@@ -300,7 +300,7 @@ function Courses() {
                                     chevron_left
                                 </span>
                             </button>
-                            
+
                             {pageNumbers.map((page) => (
                                 <button
                                     type="button"

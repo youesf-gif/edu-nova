@@ -518,3 +518,12 @@ a {
   max-width: 32rem;
 }
 
+/* Page offset utilities for fixed navbar */
+.pt-navbar {
+  padding-top: var(--navbar-height) !important;
+}
+
+.mt-navbar {
+  margin-top: var(--navbar-height) !important;
+}
+
