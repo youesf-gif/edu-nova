@@ -74,31 +74,38 @@
   padding: 0.5rem 1.5rem;
   font-size: 14px;
   font-weight: 500;
-  color: var(--primary);
-  background: transparent;
-  border: 1px solid var(--primary);
+  color: var(--primary) !important;
+  background-color: var(--white) !important;
+  border: 1px solid var(--primary) !important;
   border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+  cursor: pointer;
 }
 
-.btn-login:hover {
-  background-color: var(--primary);
-  color: var(--white);
+.btn-login:hover,
+.btn-login:hover * {
+  background-color: var(--secondary) !important;
+  color: var(--white) !important;
+  border-color: var(--secondary) !important;
 }
 
 .btn-signup {
   padding: 0.5rem 1.5rem;
   font-size: 14px;
   font-weight: 500;
-  color: var(--white);
-  background-color: var(--secondary);
-  border: none;
+  color: var(--white) !important;
+  background-color: var(--secondary) !important;
+  border: 1px solid var(--secondary) !important;
   border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+  cursor: pointer;
 }
 
-.btn-signup:hover {
-  background-color: #006f66;
+.btn-signup:hover,
+.btn-signup:hover * {
+  background-color: #005a52 !important;
+  color: var(--white) !important;
+  border-color: #005a52 !important;
 }
 
 .mobile-toggle-btn {

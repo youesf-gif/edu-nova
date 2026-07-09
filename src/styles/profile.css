@@ -1,0 +1,519 @@
+/* ==========================================================================
+   PROFILE PAGE — page-specific styles
+   Global rules (base variables, typography, color tokens, spacing utils,
+   etc.) are already defined in global.css — NOT duplicated here.
+   Bootstrap handles grid / layout / responsive utilities.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------
+   CSS VARIABLE ADDITIONS — tokens used on the profile page that
+   are absent from global.css
+--------------------------------------------------------------- */
+:root {
+  --on-surface: #0b1c30;
+  --surface-dim: #cbdbf5;
+  --on-primary-fixed-variant: #3c475a;
+  --surface-container-high: #dce9ff;
+  --on-secondary: #ffffff;
+  --on-error-container: #93000a;
+  --on-error: #ffffff;
+  --on-primary: #ffffff;
+  --on-secondary-fixed: #00201d;
+  --outline: #75777d;
+  --surface-container-highest: #d3e4fe;
+  --on-secondary-container: #006f66;
+  --error-container: #ffdad6;
+  --error: #ba1a1a;
+  --surface-bright: #f8f9ff;
+  --on-background: #0b1c30;
+  --secondary-container: #86f2e4;
+  --surface: #f8f9ff;
+
+  /* Spacing tokens */
+  --stack-md: 1rem;
+  --stack-sm: 0.5rem;
+  --stack-lg: 2rem;
+  --gutter: 1.5rem;
+}
+
+/* ---------------------------------------------------------------
+   BOOTSTRAP GLOBAL OVERRIDES (needed for profile page layout)
+--------------------------------------------------------------- */
+
+a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control {
+  border: 1px solid var(--outline-variant) !important;
+  border-radius: 0.5rem !important;
+  background-color: var(--surface-container-lowest) !important;
+  color: var(--on-surface) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  padding: 0.75rem 1rem !important;
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  border-color: var(--secondary) !important;
+  box-shadow: 0 0 0 2px rgba(0, 106, 97, 0.2) !important;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0;
+}
+
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------
+   COLOUR UTILITIES — not in global.css
+--------------------------------------------------------------- */
+
+.bg-secondary-container     { background-color: var(--secondary-container) !important; }
+.bg-on-surface              { background-color: var(--on-surface) !important; }
+.bg-surface-container-lowest { background-color: var(--surface-container-lowest) !important; }
+.bg-secondary               { background-color: var(--secondary) !important; }
+
+/* Translucent variants (CSS escaped-class equivalents as plain names) */
+.bg-surface-container-high-10 { background-color: rgba(220, 233, 255, 0.1) !important; }
+.bg-secondary-10              { background-color: rgba(0, 106, 97, 0.1) !important; }
+.bg-white-60                  { background-color: rgba(255, 255, 255, 0.6) !important; }
+
+.text-on-secondary-container  { color: var(--on-secondary-container) !important; }
+.text-on-secondary            { color: var(--on-secondary) !important; }
+.text-error                   { color: var(--error) !important; }
+.text-surface-dim             { color: var(--surface-dim) !important; }
+.text-surface-bright          { color: var(--surface-bright) !important; }
+
+.border-on-primary-fixed-variant { border-color: var(--on-primary-fixed-variant) !important; }
+.border-secondary                { border-color: var(--secondary) !important; }
+.border-surface-container-highest { border-color: var(--surface-container-highest) !important; }
+
+/* ---------------------------------------------------------------
+   DIMENSION UTILITIES — not in global.css
+--------------------------------------------------------------- */
+.w-10  { width:  2.5rem !important; }
+.h-10  { height: 2.5rem !important; }
+.w-32  { width:  8rem   !important; }
+.h-32  { height: 8rem   !important; }
+.w-48  { width:  12rem  !important; }
+.h-48  { height: 12rem  !important; }
+.w-64  { width:  16rem  !important; }
+
+.flex-grow { flex-grow: 1 !important; }
+
+/* ---------------------------------------------------------------
+   POSITIONING UTILITIES — not in global.css
+--------------------------------------------------------------- */
+.absolute        { position: absolute !important; }
+.relative        { position: relative !important; }
+.overflow-hidden { overflow: hidden !important; }
+.overflow-y-auto { overflow-y: auto !important; }
+.z-50            { z-index: 50 !important; }
+.top-0           { top: 0 !important; }
+.bottom-1        { bottom: 0.25rem !important; }
+.right-1         { right: 0.25rem !important; }
+.neg-right-12    { right: -3rem !important; }
+.neg-bottom-12   { bottom: -3rem !important; }
+.left-4          { left: 1rem !important; }
+
+/* ---------------------------------------------------------------
+   SPACING UTILITIES — additions not in global.css
+--------------------------------------------------------------- */
+.p-2   { padding: 0.5rem  !important; }
+.p-3   { padding: 0.75rem !important; }
+.p-6   { padding: 1.5rem  !important; }
+.px-3  { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+.px-4  { padding-left: 1rem    !important; padding-right: 1rem    !important; }
+.px-8  { padding-left: 2rem    !important; padding-right: 2rem    !important; }
+.pl-12 { padding-left: 3rem    !important; }
+.pt-4  { padding-top: 1rem     !important; }
+.mb-4  { margin-bottom: 1rem   !important; }
+.mt-1  { margin-top: 0.25rem   !important; }
+.mt-6  { margin-top: 1.5rem    !important; }
+.mt-auto { margin-top: auto    !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+
+.p-stack-md  { padding: var(--stack-md) !important; }
+.p-stack-lg  { padding: var(--stack-lg) !important; }
+.py-stack-lg { padding-top: var(--stack-lg) !important; padding-bottom: var(--stack-lg) !important; }
+.pb-stack-md { padding-bottom: var(--stack-md) !important; }
+.px-gutter   { padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; }
+
+.max-w-4xl           { max-width: 56rem   !important; }
+.max-w-container-max { max-width: var(--container-max, 1320px) !important; }
+
+/* gap-stack-md */
+.gap-stack-md { gap: var(--stack-md) !important; }
+
+/* Shadow utilities — not in global.css */
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
+.shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important; }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important; }
+
+/* ---------------------------------------------------------------
+   SPACE-Y STACK HELPERS
+--------------------------------------------------------------- */
+.space-y-2 > * + *        { margin-top: 0.5rem !important; }
+.space-y-4 > * + *        { margin-top: 1rem   !important; }
+.space-y-6 > * + *        { margin-top: 1.5rem !important; }
+.space-y-stack-lg > * + * { margin-top: var(--stack-lg) !important; }
+
+/* ---------------------------------------------------------------
+   GAP UTILITY — gap-1 not in global.css
+--------------------------------------------------------------- */
+.gap-1 { gap: 0.25rem !important; }
+
+/* ---------------------------------------------------------------
+   BORDER UTILITIES — not in global.css
+--------------------------------------------------------------- */
+.border   { border: 1px solid !important; }
+.border-2 { border: 2px solid !important; }
+.border-4 { border: 4px solid !important; }
+.border-b { border-bottom: 1px solid !important; }
+.border-r { border-right: 1px solid !important; }
+.border-t { border-top: 1px solid !important; }
+.border-none { border: none !important; }
+
+/* ---------------------------------------------------------------
+   TEXT / DISPLAY UTILITIES — not in global.css
+--------------------------------------------------------------- */
+.text-sm        { font-size: 0.875rem !important; }
+.text-10px      { font-size: 10px !important; }
+.text-center    { text-align: center !important; }
+.leading-none   { line-height: 1 !important; }
+.uppercase      { text-transform: uppercase !important; }
+.tracking-wider { letter-spacing: 0.05em !important; }
+.opacity-80     { opacity: 0.8 !important; }
+.object-cover   { object-fit: cover !important; }
+.resize-none    { resize: none !important; }
+.block          { display: block !important; }
+.outline-none   { outline: none !important; }
+.outline-none:focus { outline: none !important; }
+
+/* ---------------------------------------------------------------
+   TRANSITION / ANIMATION UTILITIES — not in global.css
+--------------------------------------------------------------- */
+.transition-transform { transition: transform 0.2s ease !important; }
+.duration-200         { transition-duration: 200ms !important; }
+
+/* ---------------------------------------------------------------
+   HOVER / ACTIVE / FOCUS STATES
+--------------------------------------------------------------- */
+.hover-bg-surface-container-low:hover {
+  background-color: var(--surface-container-low) !important;
+}
+
+.hover-bg-surface-container-high:hover {
+  background-color: var(--surface-container-high) !important;
+}
+
+.hover-bg-error-container-20:hover {
+  background-color: rgba(255, 218, 214, 0.2) !important;
+}
+
+.hover-scale-110:hover {
+  transform: scale(1.1) !important;
+}
+
+.hover-underline:hover {
+  text-decoration: underline !important;
+}
+
+.hover-bg-on-secondary-container:hover {
+  background-color: var(--on-secondary-container) !important;
+}
+
+.hover-bg-secondary-5:hover {
+  background-color: rgba(0, 106, 97, 0.05) !important;
+}
+
+.hover-opacity-100:hover {
+  opacity: 1 !important;
+}
+
+.hover-text-secondary-fixed:hover {
+  color: var(--secondary-fixed) !important;
+}
+
+.hover-bg-secondary-fixed-20:hover {
+  background-color: rgba(137, 245, 231, 0.2) !important;
+}
+
+.active-scale-95:active {
+  transform: scale(0.95) !important;
+}
+
+.active-opacity-80:active {
+  opacity: 0.8 !important;
+}
+
+.focus-ring-secondary:focus {
+  box-shadow: 0 0 0 2px rgba(0, 106, 97, 0.2) !important;
+}
+
+.focus-border-secondary:focus {
+  border-color: var(--secondary) !important;
+}
+
+/* JS-applied ring class */
+.ring-2 {
+  box-shadow: 0 0 0 2px rgba(0, 106, 97, 0.2) !important;
+}
+
+/* ---------------------------------------------------------------
+   VISUAL EFFECTS
+--------------------------------------------------------------- */
+.backdrop-blur {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.blur-3xl {
+  filter: blur(64px) !important;
+}
+
+/* ---------------------------------------------------------------
+   BENTO CARD
+--------------------------------------------------------------- */
+.bento-card {
+  background: #ffffff;
+  border: 1px solid #e5eeff;
+  border-radius: 1rem;
+  transition: all 0.2s ease;
+}
+
+.bento-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.bento-card > *:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------------------------------------------------------------
+   CUSTOM SCROLLBAR
+--------------------------------------------------------------- */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+/* ---------------------------------------------------------------
+   STICKY SIDEBAR
+--------------------------------------------------------------- */
+.sticky-aside {
+  position: sticky !important;
+  top: 64px !important;
+  height: calc(100vh - 64px) !important;
+  width: 16rem !important;
+  flex-shrink: 0;
+  z-index: 40;
+}
+
+aside.sticky-aside {
+  border-right: 1px solid var(--outline-variant) !important;
+}
+
+/* ---------------------------------------------------------------
+   SIDEBAR NAV
+--------------------------------------------------------------- */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* ---------------------------------------------------------------
+   TOP NAVIGATION STRIP
+--------------------------------------------------------------- */
+.profile-topnav {
+  min-height: 4rem;
+  height: 4rem;
+  background-color: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 50 !important;
+  width: 100%;
+  border-bottom: 1px solid var(--outline-variant);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* ---------------------------------------------------------------
+   CONTENT SECTION
+--------------------------------------------------------------- */
+.profile-content-section {
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------
+   PROFILE PHOTO WRAPPER
+--------------------------------------------------------------- */
+.profile-photo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 9999px;
+}
+
+/* ---------------------------------------------------------------
+   FOOTER OVERRIDE — prevent Bootstrap padding interference
+--------------------------------------------------------------- */
+.profile-footer {
+  padding-left: var(--gutter) !important;
+  padding-right: var(--gutter) !important;
+}
+
+/* ---------------------------------------------------------------
+   BOOTSTRAP ROW / GRID CORRECTIONS
+--------------------------------------------------------------- */
+
+/* g-3 = 1rem gutter */
+.row.g-3 {
+  --bs-gutter-x: 1rem;
+  --bs-gutter-y: 1rem;
+}
+
+/* g-4 = 1.5rem gutter */
+.row.g-4 {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 1.5rem;
+}
+
+/* Block display for inputs and labels */
+input[type="text"],
+input[type="email"],
+textarea {
+  display: block !important;
+  width: 100% !important;
+}
+
+label {
+  display: block !important;
+}
+
+.form-label,
+label {
+  margin-bottom: 0 !important;
+}
+
+/* Bootstrap cols: block by default */
+.row > [class*="col"] {
+  display: block;
+}
+
+/* Bento / milestone rows: cols stretch for equal-height cards */
+.bento-row > [class*="col"],
+.milestone-row > [class*="col"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-row > [class*="col"] > .bento-card {
+  flex: 1 1 auto;
+}
+
+/* Milestone stat boxes */
+.milestone-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fix Bootstrap gap on .d-flex containers */
+.d-flex.gap-1 { gap: 0.25rem !important; }
+.d-flex.gap-2 { gap: 0.5rem  !important; }
+.d-flex.gap-3 { gap: 0.75rem !important; }
+.d-flex.gap-4 { gap: 1rem    !important; }
+.d-flex.gap-6 { gap: 1.5rem  !important; }
+.d-flex.gap-8 { gap: 2rem    !important; }
+
+/* ---------------------------------------------------------------
+   BOOTSTRAP ROW NEGATIVE MARGIN FIX
+--------------------------------------------------------------- */
+.bento-card .row,
+.milestone-card .row,
+.bento-row,
+.milestone-row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.bento-card .row > [class*="col"],
+.milestone-card .row > [class*="col"],
+.bento-row > [class*="col"],
+.milestone-row > [class*="col"] {
+  padding-left:  calc(var(--bs-gutter-x, 1rem) * 0.5);
+  padding-right: calc(var(--bs-gutter-x, 1rem) * 0.5);
+}
+
+.bento-card .row > [class*="col"]:first-child,
+.milestone-card .row > [class*="col"]:first-child,
+.bento-row > [class*="col"]:first-child,
+.milestone-row > [class*="col"]:first-child {
+  padding-left: 0 !important;
+}
+
+.bento-card .row > [class*="col"]:last-child,
+.milestone-card .row > [class*="col"]:last-child,
+.bento-row > [class*="col"]:last-child,
+.milestone-row > [class*="col"]:last-child {
+  padding-right: 0 !important;
+}
+
+/* ---------------------------------------------------------------
+   MILESTONE CARD — gradient background, overrides bento-card
+--------------------------------------------------------------- */
+.milestone-card {
+  background-image: linear-gradient(135deg, #ffffff, var(--surface-container-low)) !important;
+  background-color: transparent !important;
+  border: none !important;
+}

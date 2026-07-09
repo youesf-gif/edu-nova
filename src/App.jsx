@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
+import Profile from "./pages/Profile";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: "/courses/:id",
                 element: <CourseDetails />,
+            },
+            {
+                path: "/profile",
+                element: <Profile />,
             },
         ],
     },
