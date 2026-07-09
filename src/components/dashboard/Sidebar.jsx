@@ -1,7 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Sidebar({ activeTab = 'dashboard', setActiveTab = () => {}, user }) {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: 'dashboard' },
     { id: 'courses', label: 'My Courses', icon: 'school' },
@@ -12,9 +15,11 @@ export default function Sidebar({ activeTab = 'dashboard', setActiveTab = () => 
   return (
     <aside className="d-none d-md-flex sidebar flex-column text-white">
       <div className="sidebar-header">
-        <h1 className="text-headline-md fw-bold tracking-tight text-secondary-fixed m-0">
-          EduNova
-        </h1>
+        <Link to="/" className="text-decoration-none">
+          <h1 className="text-headline-md fw-bold tracking-tight text-secondary-fixed m-0">
+            EduNova
+          </h1>
+        </Link>
       </div>
       <nav className="flex-grow-1 px-3 mt-3 d-flex flex-column gap-2">
         {menuItems.map((item) => (
@@ -59,7 +64,8 @@ export default function Sidebar({ activeTab = 'dashboard', setActiveTab = () => 
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              alert('Logout clicked!');
+              logout();
+              navigate("/");
             }}
           >
             logout

@@ -3,96 +3,11 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CourseCard from "../components/CourseCard";
 import CategorySidebar from "../components/CategorySidebar";
+import { coursesData } from "../data/courses";
 import "../styles/home.css";
 import "../styles/courses.css";
 
-// Dynamic course data extracted from courses.html
-const coursesData = [
-    {
-        id: 1,
-        title: "Advanced UI/UX Design Systems",
-        author: "Dr. Sarah Jenkins",
-        price: "$89.99",
-        numericPrice: 89.99,
-        rating: 4.9,
-        reviews: "12.4k students",
-        badge: "Bestseller",
-        category: "Design",
-        difficulty: "Advanced",
-        imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuAWqGOUCJ5Kazo_urKCwysi7kIhVmKJ3F4qBTLfgau1ZsjApNMUfHeH6Fn8ZdnE6yPO1lkgEqZGJnUfkUInt9HSBMMgaJQnu-pJQnYvdbK50yCrSfJhpG_0D2AeArhaBFppqPYJDNVp244-gRofCRANDfeVfwY_ucecxM9aahXseZ_Wv1mezI7pT4ejAzVxXXJPjOspIsJvL_ykuBZ07XYFJ30sasvdhCM6b6z6asjqmNWhIpQclbgMsiC1r8zTyJ7ZXllbAoDGEvE",
-        imgAlt: "A professional close-up of a designer working on a high-resolution interface on a large monitor, surrounded by sleek minimalist workspace elements.",
-    },
-    {
-        id: 2,
-        title: "Full-Stack Web Engineering 2024",
-        author: "Marcus Thorne",
-        price: "$129.00",
-        numericPrice: 129.0,
-        rating: 4.8,
-        reviews: "8.2k students",
-        badge: null,
-        category: "Development",
-        difficulty: "Intermediate",
-        imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJPew-cSnRDjqU0wJPR1ruaq-LraH2llweZTi-K9kc9SZpOnRHX-MABUT5BCY2Z8r3PY-CA70iGhxzBAca7lvTc4u3xEu_UcC2nDbDsH8D2rTTeaApVcA_BTR45bVPYQRZcW62OAmjh_NGfD7Xif_7nhimNVOpm0WOk9-Nt4cYyJbN9PmxF_FQWk3O2T2BVmz--scVIp4L_fG5oZJ-5Cs7YF9DnZvqYUMH-GwcPqRVz12qH3YSQkZL2zPN8St0nj1JmejSqe72ROY",
-        imgAlt: "A dynamic shot of a clean, modern software development environment with code flowing across multiple screens in a dark-mode editor.",
-    },
-    {
-        id: 3,
-        title: "Strategic Business Management",
-        author: "Elena Rodriguez",
-        price: "$54.99",
-        numericPrice: 54.99,
-        rating: 4.7,
-        reviews: "5.1k students",
-        badge: "Bestseller",
-        category: "Business",
-        difficulty: "Intermediate",
-        imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuCbbEdZcv_Qe2RpH_m4AyZ70L082iUsobJSOa9yk6Ag39ZxxXFESeZE_Y8-ZWFmqDuBHKZsxxqCJlhftu2orl5tJ8Ot5oBA14XV9Edjift743VHltWlDpo02Asf8z1KRBdneKqXqx7A0ZXfad0gU8x4srSFAifD1OzNZWvWyQI5h2ahCZTrS5Qq9ZPvFFG29bDxglY5q1GN-M2nqpIdXOlg2GRdPPyxidLh1Maq4mdgAa3AQd3yS13HjBypA3B0fxO22b0mdQ8zni8",
-        imgAlt: "A sophisticated business setting featuring a glass-walled conference room overlooking a modern city skyline.",
-    },
-    {
-        id: 4,
-        title: "Digital Marketing Masterclass",
-        author: "James Wilson",
-        price: "$19.99",
-        numericPrice: 19.99,
-        rating: 4.5,
-        reviews: "15.8k students",
-        badge: null,
-        category: "Marketing",
-        difficulty: "Beginner",
-        imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDyFPwgxz6ypx-kxoPbClV6T-GTJoT4o-pW1r8VXd_swueMcZC6C_Jo2r7oc1Morkn96fYjhwat6-3h72G7d9QGAOOHCXFiVrTYRyfh-LENOl40RTPk0a-rpbF8MVc8m492TR0OYs18-Rt6OQGPM35-XkO7LAQEQZIPwE9QxdSp_vUGdDhrsCGhKnwP_Z1v_jY-CU6-OGqLzUt62VPbVm-t05qxJ4qGLcDPCxkx7spcsXewndzxxUzOhiQOHiPRa_1VL5NRnpmAYrs",
-        imgAlt: "An artistic composition of various marketing tools—social media icons, megaphone, and digital growth charts—floating in a stylized 3D space.",
-    },
-    {
-        id: 5,
-        title: "Python for Data Science & AI",
-        author: "Sofia Chen",
-        price: "$149.00",
-        numericPrice: 149.0,
-        rating: 4.9,
-        reviews: "22.1k students",
-        badge: null,
-        category: "Development",
-        difficulty: "Intermediate",
-        imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuByzQBtSbDfV7EtPEjmQ8mx3ttOs7JI-qLqD4JEuPxK9DcWjOwWv2ZknKeTVwdL0S_QHlJah0Q4eGb4JI1pGL7h86mXlV75AU5g23zh5vh9PDAhcQazwUVfYDQ7-W8fW3Vuize3WP_Z61lsmF5XPWiBcFw27gj8pcXvqd_q4yCyLxE40tJEu-nzsxMtxyX3rojmQcpU-kj5bViGJyOT1ShRKCx-grWlC-MhkBfO4VkaCkTFBLfsMs9PwIxPRXPLDU7-D_wCo7H58Ys",
-        imgAlt: "A minimalist and high-tech visualization of neural networks and data particles forming complex structures.",
-    },
-    {
-        id: 6,
-        title: "Professional Photography Foundations",
-        author: "David Miller",
-        price: "$39.99",
-        numericPrice: 39.99,
-        rating: 4.6,
-        reviews: "3.9k students",
-        badge: null,
-        category: "Design",
-        difficulty: "Beginner",
-        imgSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuDGv2jHs0-4-kCw2wko4Hgr2c3nIdJid4zN69dDfFcrTwq1Q3p_d0eGFy8uM0JINDEfgFqKdEZRZdzWP7kDbTDGXrzqn9fR2M2pSf9m5_x0lwKizZAeFM_T_IZtNm8_e2anvLiIZuP1KTPiNOuVpYAEC1ddw3I4epdHETFFA7feAJKVR0Gjq_LyWcjowu4wxMKAOA2-AeF23JloTLZeQrrR0zuCl2kIQ5sKY6ZYIJRN9pYBvwRnVaqRajwhvix_JOZFNoQ6NlAYRpE",
-        imgAlt: "A clean, minimalist studio shot of photography equipment including a high-end mirrorless camera, lenses, and softbox lighting setups.",
-    },
-];// Available categories with icons
+// Available categories with icons
 const categories = [
     { name: "All Courses", icon: "grid_view" },
     { name: "Design", icon: "palette" },

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "../styles/navbar.css";
 
 function Navbar({ minimal = false }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { currentUser } = useAuth();
 
   return (
     <header className="app-header">
@@ -14,8 +16,22 @@ function Navbar({ minimal = false }) {
             <nav className="d-none d-md-flex gap-6 align-items-center">
               <Link className="font-body-md text-on-surface-variant hover-text-secondary transition-colors cursor-pointer text-decoration-none" to="/">Home</Link>
               <Link className="font-body-md text-on-surface-variant hover-text-secondary transition-colors cursor-pointer text-decoration-none" to="/courses">All Courses</Link>
+              {currentUser && (
+                <Link className="font-body-md text-on-surface-variant hover-text-secondary transition-colors cursor-pointer text-decoration-none" to="/dashboard">Dashboard</Link>
+              )}
             </nav>
           </div>
+          {currentUser && (
+            <div className="d-flex align-items-center gap-3">
+              <Link to="/profile" className="d-block rounded-full border-2 border-secondary overflow-hidden cursor-pointer" style={{ width: "40px", height: "40px" }}>
+                <img
+                  className="w-100 h-100 object-cover"
+                  src={currentUser.avatar}
+                  alt="Profile Avatar"
+                />
+              </Link>
+            </div>
+          )}
         </div>
       ) : (
         <>
@@ -25,11 +41,26 @@ function Navbar({ minimal = false }) {
               <div className="desktop-nav-links">
                 <NavLink className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} to="/">Home</NavLink>
                 <NavLink className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} to="/courses">All Courses</NavLink>
+                {currentUser && (
+                  <NavLink className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`} to="/dashboard">Dashboard</NavLink>
+                )}
               </div>
             </div>
             <div className="desktop-auth-buttons">
-              <Link className="btn-login text-decoration-none d-inline-flex align-items-center justify-content-center" to="/login">Login</Link>
-              <Link className="btn-signup text-decoration-none d-inline-flex align-items-center justify-content-center" to="/register">Sign Up</Link>
+              {currentUser ? (
+                <Link to="/profile" className="d-block rounded-full border-2 border-secondary overflow-hidden cursor-pointer" style={{ width: "40px", height: "40px" }}>
+                  <img
+                    className="w-100 h-100 object-cover"
+                    src={currentUser.avatar}
+                    alt="Profile Avatar"
+                  />
+                </Link>
+              ) : (
+                <>
+                  <Link className="btn-login text-decoration-none d-inline-flex align-items-center justify-content-center" to="/login">Login</Link>
+                  <Link className="btn-signup text-decoration-none d-inline-flex align-items-center justify-content-center" to="/register">Sign Up</Link>
+                </>
+              )}
             </div>
             {/* Mobile Menu Toggle Button */}
             <button 
@@ -49,9 +80,18 @@ function Navbar({ minimal = false }) {
             <div className="mobile-menu-inner">
               <NavLink className={({ isActive }) => `mobile-link ${isActive ? "active" : ""}`} to="/">Home</NavLink>
               <NavLink className={({ isActive }) => `mobile-link ${isActive ? "active" : ""}`} to="/courses">All Courses</NavLink>
-              <hr className="mobile-divider" />
-              <Link className="btn-mobile-login text-decoration-none text-center" to="/login">Login</Link>
-              <Link className="btn-mobile-signup text-decoration-none text-center" to="/register">Sign Up</Link>
+              {currentUser ? (
+                <>
+                  <NavLink className={({ isActive }) => `mobile-link ${isActive ? "active" : ""}`} to="/dashboard">Dashboard</NavLink>
+                  <NavLink className={({ isActive }) => `mobile-link ${isActive ? "active" : ""}`} to="/profile">Profile</NavLink>
+                </>
+              ) : (
+                <>
+                  <hr className="mobile-divider" />
+                  <Link className="btn-mobile-login text-decoration-none text-center" to="/login">Login</Link>
+                  <Link className="btn-mobile-signup text-decoration-none text-center" to="/register">Sign Up</Link>
+                </>
+              )}
             </div>
           </div>
         </>

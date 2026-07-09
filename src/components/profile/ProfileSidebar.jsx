@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const TABS = [
   { id: "personal",      label: "Personal Info",    icon: "person"        },
@@ -9,6 +11,8 @@ const TABS = [
 
 function ProfileSidebar() {
   const [activeTab, setActiveTab] = useState("personal");
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <aside className="bg-surface-container-low sticky-aside d-none d-md-flex flex-column p-stack-md gap-2">
@@ -40,7 +44,14 @@ function ProfileSidebar() {
 
       {/* Logout */}
       <div className="mt-auto p-3">
-        <button className="w-100 d-flex align-items-center gap-3 p-3 text-error font-bold hover-bg-error-container-20 rounded-lg transition-colors cursor-pointer">
+        <button 
+          onClick={() => {
+            logout();
+            navigate("/");
+          }}
+          className="w-100 d-flex align-items-center gap-3 p-3 text-error font-bold hover-bg-error-container-20 rounded-lg transition-colors cursor-pointer border-0"
+          style={{ background: 'none' }}
+        >
           <span className="material-symbols-outlined">logout</span>
           <span className="font-label-md">Logout</span>
         </button>
@@ -50,3 +61,4 @@ function ProfileSidebar() {
 }
 
 export default ProfileSidebar;
+

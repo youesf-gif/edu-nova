@@ -3,12 +3,15 @@ import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { coursesData } from "../data/courses";
+import { useAuth } from "../context/AuthContext";
 import "../styles/course-details.css";
 
 function CourseDetails() {
     const { id } = useParams();
+    const { currentUser } = useAuth();
     const course = coursesData.find((c) => c.id === parseInt(id));
     const [activeModules, setActiveModules] = useState([1]);
+    const isEnrolled = currentUser?.enrolledCourses?.some((enrollment) => enrollment.courseId === course?.id);
 
     const toggleAccordion = (moduleNumber) => {
         if (activeModules.includes(moduleNumber)) {
@@ -357,12 +360,20 @@ function CourseDetails() {
                                 </div>
                                 {/* CTA Buttons */}
                                 <div className="card-cta-buttons">
-                                    <button className="card-btn card-btn-primary">
-                                        Enroll Now
-                                    </button>
-                                    <button className="card-btn card-btn-outline">
-                                        Add to Cart
-                                    </button>
+                                    {isEnrolled ? (
+                                        <Link to="/dashboard" className="card-btn card-btn-primary text-decoration-none text-center d-flex align-items-center justify-content-center">
+                                            Continue Learning
+                                        </Link>
+                                    ) : (
+                                        <>
+                                            <button className="card-btn card-btn-primary">
+                                                Enroll Now
+                                            </button>
+                                            <button className="card-btn card-btn-outline">
+                                                Add to Cart
+                                            </button>
+                                        </>
+                                    )}
                                 </div>
                                 {/* 30-Day Guarantee */}
                                 <p className="card-guarantee">

@@ -6,6 +6,8 @@ import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
 import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
     {
@@ -33,18 +35,31 @@ const router = createBrowserRouter([
             },
             {
                 path: "/profile",
-                element: <Profile />,
+                element: (
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: "/dashboard",
-                element: <Dashboard />,
+                element: (
+                    <ProtectedRoute>
+                        <Dashboard />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <AuthProvider>
+            <RouterProvider router={router} />
+        </AuthProvider>
+    );
 }
 
 export default App;
+

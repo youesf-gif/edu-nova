@@ -1,4 +1,8 @@
+import { useAuth } from "../../context/AuthContext";
+
 function ProfileForm() {
+  const { currentUser } = useAuth();
+
   return (
     <div className="bento-card p-stack-lg space-y-6">
       {/* First Name + Last Name */}
@@ -9,7 +13,7 @@ function ProfileForm() {
             <input
               className="w-100 px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus-ring-secondary focus-border-secondary outline-none transition-all"
               type="text"
-              defaultValue="Alexander"
+              defaultValue={currentUser?.firstName}
             />
           </div>
         </div>
@@ -19,7 +23,7 @@ function ProfileForm() {
             <input
               className="w-100 px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus-ring-secondary focus-border-secondary outline-none transition-all"
               type="text"
-              defaultValue="Sterling"
+              defaultValue={currentUser?.lastName}
             />
           </div>
         </div>
@@ -38,7 +42,7 @@ function ProfileForm() {
           <input
             className="w-100 pl-12 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus-ring-secondary focus-border-secondary outline-none transition-all"
             type="email"
-            defaultValue="alex.sterling@edustream.edu"
+            defaultValue={currentUser?.email}
           />
         </div>
       </div>
@@ -54,16 +58,16 @@ function ProfileForm() {
         <textarea
           className="w-100 px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg focus-ring-secondary focus-border-secondary outline-none transition-all resize-none"
           rows={4}
-          defaultValue="Senior Learning Designer with a passion for architectural history and digital pedagogy. Currently exploring the intersection of AI and traditional classroom environments."
+          defaultValue={currentUser?.bio}
         />
       </div>
 
       {/* Action buttons */}
       <div className="d-flex align-items-center gap-4 pt-4">
-        <button className="px-8 py-3 bg-secondary text-on-secondary font-bold rounded-full hover-bg-on-secondary-container transition-all shadow-md active-scale-95 cursor-pointer">
+        <button className="px-8 py-3 bg-secondary text-on-secondary font-bold rounded-full hover-bg-on-secondary-container transition-all shadow-md active-scale-95 cursor-pointer border-0">
           Save Changes
         </button>
-        <button className="px-8 py-3 text-secondary font-bold border-2 border-secondary rounded-full hover-bg-secondary-5 transition-all cursor-pointer">
+        <button className="px-8 py-3 text-secondary font-bold border-2 border-secondary rounded-full hover-bg-secondary-5 transition-all cursor-pointer bg-transparent">
           Discard
         </button>
       </div>

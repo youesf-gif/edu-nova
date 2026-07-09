@@ -1,8 +1,6 @@
 import React from 'react';
 
-export default function LearningCard({ course, onContinue = () => {} }) {
-  const { title, image, imageAlt, moduleInfo, progress } = course;
-
+export default function LearningCard({ id, title, image, instructor, progress, imageAlt = '', moduleInfo = '', onContinue = () => {} }) {
   return (
     <div className="learning-card h-100 d-flex flex-column">
       <div className="learning-img-wrapper">
@@ -20,6 +18,11 @@ export default function LearningCard({ course, onContinue = () => {} }) {
           <h4 className="text-headline-md fs-5 text-primary line-clamp-1 mb-3">
             {title}
           </h4>
+          {instructor && (
+            <p className="text-label-sm text-on-surface-variant m-0 mb-3">
+              Instructor: {instructor}
+            </p>
+          )}
           <div className="d-flex flex-column gap-2">
             <div className="d-flex justify-content-between text-label-sm">
               <span className="text-on-surface-variant">Progress</span>
@@ -30,7 +33,7 @@ export default function LearningCard({ course, onContinue = () => {} }) {
             </div>
           </div>
         </div>
-        <button className="btn-continue" onClick={() => onContinue(course.id)}>
+        <button className="btn-continue" onClick={() => onContinue(id)}>
           <span>Continue Lesson</span>
           <span className="material-symbols-outlined text-sm">arrow_forward</span>
         </button>

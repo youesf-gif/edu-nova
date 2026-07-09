@@ -1,10 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import AuthVisualPanel from "../components/AuthVisualPanel";
+import { useAuth } from "../context/AuthContext";
 import "../styles/login.css";
 
 function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [submitError, setSubmitError] = useState("");
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
 
@@ -83,10 +87,16 @@ function Login() {
   // Handle form submission
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setSubmitError("");
     
     const isValid = validateForm();
     if (isValid) {
-      // Form is valid. Submit login data here
+      const result = login(formData.email, formData.password);
+      if (result.success) {
+        navigate("/dashboard");
+      } else {
+        setSubmitError(result.error);
+      }
     } else {
       // Focus the first invalid field
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -127,6 +137,11 @@ function Login() {
               </div>
               {/* Login Form */}
               <form className="space-y-6" onSubmit={handleFormSubmit}>
+                {submitError && (
+                  <div className="alert alert-danger font-label-md py-3 rounded-lg border-0 m-0" style={{ backgroundColor: "#ffdad6", color: "#ba1a1a" }}>
+                    {submitError}
+                  </div>
+                )}
                 {/* Email Address */}
                 <div className="space-y-2">
                   <label className="font-label-md text-label-md text-on-surface" htmlFor="email">
