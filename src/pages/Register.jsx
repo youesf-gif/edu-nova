@@ -1,10 +1,15 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import AuthVisualPanel from "../components/AuthVisualPanel";
+import { useAuth } from "../context/AuthContext";
 import "../styles/register.css";
 
 function Register() {
+  const navigate = useNavigate();
+  const { register } = useAuth();
+  const [submitError, setSubmitError] = useState("");
+
   const nameInputRef = useRef(null);
   const emailInputRef = useRef(null);
   const passwordInputRef = useRef(null);
@@ -121,12 +126,32 @@ function Register() {
   };
 
   // Handle form submission
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError("");
     
     const isValid = validateForm();
     if (isValid) {
-      // Form is valid. Submit registration data here
+      try {
+        const result = await register(formData.email, formData.password, formData.fullName);
+        if (result.success) {
+          navigate("/dashboard");
+        } else {
+          if (result.error.toLowerCase().includes("email")) {
+            setErrors((prev) => ({
+              ...prev,
+              email: result.error
+            }));
+            if (emailInputRef.current) {
+              emailInputRef.current.focus();
+            }
+          } else {
+            setSubmitError(result.error);
+          }
+        }
+      } catch (err) {
+        setSubmitError("An unexpected error occurred. Please try again.");
+      }
     } else {
       // Focus the first invalid field
       const nameTrimmed = formData.fullName.trim();
@@ -182,6 +207,11 @@ function Register() {
               
               {/* Registration Form */}
               <form className="space-y-6" onSubmit={handleFormSubmit}>
+                {submitError && (
+                  <div className="alert alert-danger font-label-md py-3 rounded-lg border-0 m-0" style={{ backgroundColor: "#ffdad6", color: "#ba1a1a" }}>
+                    {submitError}
+                  </div>
+                )}
                 {/* Full Name */}
                 <div className="space-y-2">
                   <label className="font-label-md text-label-md text-on-surface" htmlFor="full_name">

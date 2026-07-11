@@ -3,6 +3,7 @@ export const coursesData = [
         id: 1,
         title: "Advanced UI/UX Design Systems",
         author: "Dr. Sarah Jenkins",
+        featured: true,
         authorRole: "Senior Product Designer",
         authorImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuDIYwfQlUsPDTL_q9GS8CjDs3JvV51fCJ9OwTZ1TszheE95ENxvP9z88SvaDJ8IaNJR4aJJkBXVYwFSFqUAbkFODfGiQUbxw0PEhf89DaLn395hnV04HOKwbCKTTkeNXvaCAr0-OgV-tLV6qD2QsKBLSgcS1Zuagi1qfuGeozs203d2TwUcreXoIe-B-TXqjv5mUy9JS8XGlWtT4HJxWoeGp-t3wK99CqOMKNx4SdBJKYPcxRjXsWaA30Rz20noZwCxbcH1CRc7Kn8",
         authorBio: [
@@ -96,6 +97,7 @@ export const coursesData = [
         id: 2,
         title: "Full-Stack Web Engineering 2024",
         author: "Marcus Thorne",
+        featured: true,
         authorRole: "Lead Web Engineer",
         authorImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuDIYwfQlUsPDTL_q9GS8CjDs3JvV51fCJ9OwTZ1TszheE95ENxvP9z88SvaDJ8IaNJR4aJJkBXVYwFSFqUAbkFODfGiQUbxw0PEhf89DaLn395hnV04HOKwbCKTTkeNXvaCAr0-OgV-tLV6qD2QsKBLSgcS1Zuagi1qfuGeozs203d2TwUcreXoIe-B-TXqjv5mUy9JS8XGlWtT4HJxWoeGp-t3wK99CqOMKNx4SdBJKYPcxRjXsWaA30Rz20noZwCxbcH1CRc7Kn8",
         authorBio: [
@@ -176,6 +178,7 @@ export const coursesData = [
         id: 3,
         title: "Strategic Business Management",
         author: "Elena Rodriguez",
+        featured: true,
         authorRole: "Business Strategist",
         authorImg: "https://lh3.googleusercontent.com/aida-public/AB6AXuDIYwfQlUsPDTL_q9GS8CjDs3JvV51fCJ9OwTZ1TszheE95ENxvP9z88SvaDJ8IaNJR4aJJkBXVYwFSFqUAbkFODfGiQUbxw0PEhf89DaLn395hnV04HOKwbCKTTkeNXvaCAr0-OgV-tLV6qD2QsKBLSgcS1Zuagi1qfuGeozs203d2TwUcreXoIe-B-TXqjv5mUy9JS8XGlWtT4HJxWoeGp-t3wK99CqOMKNx4SdBJKYPcxRjXsWaA30Rz20noZwCxbcH1CRc7Kn8",
         authorBio: [

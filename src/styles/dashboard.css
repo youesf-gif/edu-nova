@@ -92,13 +92,6 @@
 .sidebar-user-card:hover {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
-.avatar-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid var(--secondary-fixed);
-  object-fit: cover;
-}
 .text-role {
   font-size: 10px;
   color: var(--on-primary-container);

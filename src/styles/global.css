@@ -527,3 +527,24 @@ a {
   margin-top: var(--navbar-height) !important;
 }
 
+/* Shared Avatar Styling */
+.app-avatar-container {
+  display: block;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  border: 2px solid var(--secondary) !important;
+  overflow: hidden !important;
+  cursor: pointer !important;
+  background-color: #fff !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.app-avatar-container img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+

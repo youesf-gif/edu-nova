@@ -45,11 +45,12 @@ export default function Sidebar({ activeTab = 'dashboard', setActiveTab = () => 
             to="/profile"
             className="d-flex align-items-center gap-3 flex-grow-1 min-w-0 text-decoration-none stretched-link"
           >
-            <img
-              className="avatar-img"
-              alt={user?.avatarAlt}
-              src={user?.avatarUrl}
-            />
+            <div className="app-avatar-container">
+              <img
+                alt={user?.avatarAlt}
+                src={user?.avatarUrl}
+              />
+            </div>
             <div className="flex-grow-1 min-w-0">
               <p className="text-label-md text-white text-truncate m-0">
                 {user?.name}

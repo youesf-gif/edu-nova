@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Hero() {
   const [isExplorePressed, setIsExplorePressed] = useState(false);
   const [isStartPressed, setIsStartPressed] = useState(false);
+  const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   return (
     <section className="hero-section">
@@ -22,6 +26,7 @@ function Hero() {
                 onMouseDown={() => setIsExplorePressed(true)}
                 onMouseUp={() => setIsExplorePressed(false)}
                 onMouseLeave={() => setIsExplorePressed(false)}
+                onClick={() => navigate("/courses")}
               >
                 Explore Courses
               </button>
@@ -30,6 +35,7 @@ function Hero() {
                 onMouseDown={() => setIsStartPressed(true)}
                 onMouseUp={() => setIsStartPressed(false)}
                 onMouseLeave={() => setIsStartPressed(false)}
+                onClick={() => navigate(currentUser ? "/dashboard" : "/register")}
               >
                 Get Started
               </button>

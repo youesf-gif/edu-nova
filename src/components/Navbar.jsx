@@ -23,9 +23,8 @@ function Navbar({ minimal = false }) {
           </div>
           {currentUser && (
             <div className="d-flex align-items-center gap-3">
-              <Link to="/profile" className="d-block rounded-full border-2 border-secondary overflow-hidden cursor-pointer" style={{ width: "40px", height: "40px" }}>
+              <Link to="/profile" className="app-avatar-container">
                 <img
-                  className="w-100 h-100 object-cover"
                   src={currentUser.avatar}
                   alt="Profile Avatar"
                 />
@@ -48,9 +47,8 @@ function Navbar({ minimal = false }) {
             </div>
             <div className="desktop-auth-buttons">
               {currentUser ? (
-                <Link to="/profile" className="d-block rounded-full border-2 border-secondary overflow-hidden cursor-pointer" style={{ width: "40px", height: "40px" }}>
+                <Link to="/profile" className="app-avatar-container">
                   <img
-                    className="w-100 h-100 object-cover"
                     src={currentUser.avatar}
                     alt="Profile Avatar"
                   />

@@ -31,9 +31,8 @@ function ProfileTopNav() {
             <button className="p-2 text-on-surface-variant hover-bg-surface-container-low rounded-full transition-all cursor-pointer">
               <span className="material-symbols-outlined">help</span>
             </button>
-            <Link to="/profile" className="w-10 h-10 rounded-full border-2 border-secondary overflow-hidden cursor-pointer active-opacity-80">
+            <Link to="/profile" className="app-avatar-container active-opacity-80">
               <img
-                className="w-100 h-100 object-cover"
                 src={currentUser?.avatar}
                 alt="User avatar"
               />
